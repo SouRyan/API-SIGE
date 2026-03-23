@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\API.SIGE.csproj": {}
+    "c:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\API.SIGE.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\API.SIGE.csproj": {
+    "c:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\API.SIGE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\API.SIGE.csproj",
+        "projectUniqueName": "c:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\API.SIGE.csproj",
         "projectName": "API.SIGE",
-        "projectPath": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\API.SIGE.csproj",
+        "projectPath": "c:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\API.SIGE.csproj",
         "packagesPath": "C:\\Users\\ryan.bfsouza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\obj\\",
+        "outputPath": "c:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -58,6 +58,10 @@
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.23.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.1.5, )"
             }
           },
           "imports": [

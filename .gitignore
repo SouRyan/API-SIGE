@@ -1,0 +1,15 @@
+## Visual Studio / VS Code
+.vs/
+*.user
+*.suo
+
+## Build
+[Bb]in/
+[Oo]bj/
+out/
+
+## User-specific
+*.rsuser
+
+## Docker / env (opcional — descomente se não quiser versionar)
+# .env
