@@ -1,7 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using SIGE.API.Models;
 
-namespace SIGE.API.Models
+namespace API.SIGE.Models
 {
     [Table ("Caixilho")]
     public class Caixilho
