@@ -1,4 +1,4 @@
-using GerenciamentoProducao.Services;
+//using GerenciamentoProducao.Services;
 using API.SIGE.Interfaces;
 using SIGE.API.Models;
 using Microsoft.AspNetCore.Cors;
@@ -12,17 +12,17 @@ namespace API.SIGE.Controllers;
 public class ObraApiController : ControllerBase
 {
     private readonly IObraRepository _obraRepository;
-    private readonly GoogleCalendarService _calendarService;
+    //private readonly GoogleCalendarService _calendarService;
     private readonly string _calendarId;
 
     public ObraApiController(
         IObraRepository obraRepository,
-        GoogleCalendarService calendarService,
+        //GoogleCalendarService calendarService,
         IConfiguration configuration)
     {
         _obraRepository = obraRepository;
-        _calendarService = calendarService;
-        _calendarId = configuration["Google:key"] ?? string.Empty;
+        //_calendarService = calendarService;
+        //_calendarId = configuration["Google:key"] ?? string.Empty;
     }
 
     [HttpGet]
@@ -51,24 +51,24 @@ public class ObraApiController : ControllerBase
     {
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
 
-        if (!string.IsNullOrWhiteSpace(_calendarId))
-        {
-            try
-            {
-                var ev = _calendarService.CreateEvent(
-                    _calendarId,
-                    $"Obra: {obra.Nome}",
-                    obra.DataInicio,
-                    obra.DataTermino,
-                    $"Construtora: {obra.Construtora}");
+        //if (!string.IsNullOrWhiteSpace(_calendarId))
+        //{
+        //    try
+        //    {
+        //        var ev = _calendarService.CreateEvent(
+        //            _calendarId,
+        //            $"Obra: {obra.Nome}",
+        //            obra.DataInicio,
+        //            obra.DataTermino,
+        //            $"Construtora: {obra.Construtora}");
 
-                obra.GoogleCalendarEventId = ev.Id;
-            }
-            catch
-            {
-                // Falha no calendar nao bloqueia a criacao da obra.
-            }
-        }
+        //        obra.GoogleCalendarEventId = ev.Id;
+        //    }
+        //    catch
+        //    {
+        //        // Falha no calendar nao bloqueia a criacao da obra.
+        //    }
+        //}
 
         await _obraRepository.AddAsync(obra);
         return CreatedAtAction(nameof(GetById), new { id = obra.IdObra }, obra);
@@ -93,17 +93,17 @@ public class ObraApiController : ControllerBase
         var obra = await _obraRepository.GetById(id);
         if (obra == null) return NotFound();
 
-        if (!string.IsNullOrWhiteSpace(_calendarId) && !string.IsNullOrWhiteSpace(obra.GoogleCalendarEventId))
-        {
-            try
-            {
-                _calendarService.DeleteEvent(_calendarId, obra.GoogleCalendarEventId);
-            }
-            catch
-            {
-                // Falha no calendar nao bloqueia a exclusao da obra.
-            }
-        }
+        //if (!string.IsNullOrWhiteSpace(_calendarId) && !string.IsNullOrWhiteSpace(obra.GoogleCalendarEventId))
+        //{
+        //    try
+        //    {
+        //        _calendarService.DeleteEvent(_calendarId, obra.GoogleCalendarEventId);
+        //    }
+        //    catch
+        //    {
+        //        // Falha no calendar nao bloqueia a exclusao da obra.
+        //    }
+        //}
 
         await _obraRepository.DeleteAsync(id);
         return NoContent();

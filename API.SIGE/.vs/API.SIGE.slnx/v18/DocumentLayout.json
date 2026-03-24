@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\controllers\\obraapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\obraapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\controllers\\homeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\homeapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,19 +22,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "HomeApiController.cs",
-              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\HomeApiController.cs",
-              "RelativeDocumentMoniker": "API.SIGE\\Controllers\\HomeApiController.cs",
-              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\HomeApiController.cs",
-              "RelativeToolTip": "API.SIGE\\Controllers\\HomeApiController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAeAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ObraApiController.cs",
+              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\ObraApiController.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Controllers\\ObraApiController.cs",
+              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\ObraApiController.cs",
+              "RelativeToolTip": "API.SIGE\\Controllers\\ObraApiController.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAIwF4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-23T23:43:19.15Z",
+              "WhenOpened": "2026-03-24T00:50:54.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Program.cs",
+              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
+              "RelativeToolTip": "API.SIGE\\Program.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T00:49:45.427Z",
               "EditorCaption": ""
             },
             {
@@ -51,13 +68,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AppDbData.cs",
               "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Data\\AppDbData.cs",
               "RelativeDocumentMoniker": "API.SIGE\\Data\\AppDbData.cs",
               "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Data\\AppDbData.cs",
               "RelativeToolTip": "API.SIGE\\Data\\AppDbData.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAQwBYAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-23T23:44:12.531Z",
               "EditorCaption": ""
