@@ -1,6 +1,7 @@
+using SIGE.API.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SIGE.API.Models;
+using System.Text.Json.Serialization;
 
 namespace API.SIGE.Models
 {
@@ -32,19 +33,24 @@ namespace API.SIGE.Models
         [StringLength(200)]
         public string? Observacoes { get; set; }
 
-        public string StatusProducao { get; set; } = "Pendente"; // enum
+        public string? DescricaoCaixilho { get; set; }
+
+
+        //public string StatusProducao { get; set; } = "Pendente"; // enum
 
         [ForeignKey("Obra")]
         public int ObraId { get; set; }
+        [JsonIgnore]
         public virtual Obra? Obra{ get; set; }
 
         [ForeignKey("FamiliaCaixilho")]
         public int IdFamiliaCaixilho { get; set; }
+        [JsonIgnore]
         public virtual FamiliaCaixilho? FamiliaCaixilho { get; set; }
 
-        [ForeignKey("TipoCaixilho")]
-        public int IdTipoCaixilho { get; set; }
-        public virtual TipoCaixilho? TipoCaixilho{ get; set; }
+        //[ForeignKey("TipoCaixilho")]
+        //public int IdTipoCaixilho { get; set; }
+        //public virtual TipoCaixilho? TipoCaixilho{ get; set; }
 
 
 

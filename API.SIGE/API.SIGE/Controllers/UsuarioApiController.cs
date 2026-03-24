@@ -56,7 +56,7 @@ public class UsuarioApiController : ControllerBase
             usuario.IdUsuario,
             usuario.NomeUsuario,
             usuario.Email,
-            TipoUsuario = usuario.TipoUsuario?.NomeTipoUsuario
+            TipoUsuario = usuario.TipoUsuario?.IdTipoUsuario
         });
     }
 

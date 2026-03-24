@@ -77,7 +77,7 @@ public class CaixilhoApiController : ControllerBase
 
         caixilho.Liberado = true;
         caixilho.DataLiberacao = DateTime.Now;
-        caixilho.StatusProducao = "Liberado";
+        //caixilho.StatusProducao = "Liberado";
         await _caixilhoRepository.UpdateAsync(caixilho);
 
         return Ok(new { success = true });

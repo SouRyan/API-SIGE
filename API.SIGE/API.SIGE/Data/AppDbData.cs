@@ -16,7 +16,7 @@ public class AppDbData : DbContext
     public DbSet<Usuario> Usuarios => Set<Usuario>();
     public DbSet<TipoUsuario> TiposUsuario => Set<TipoUsuario>();
     public DbSet<FamiliaCaixilho> FamiliaCaixilhos => Set<FamiliaCaixilho>();
-    public DbSet<TipoCaixilho> TiposCaixilho => Set<TipoCaixilho>();
+    //public DbSet<TipoCaixilho> TiposCaixilho => Set<TipoCaixilho>();
     public DbSet<Producao> Producoes => Set<Producao>();
     public DbSet<RelatorioProducao> RelatoriosProducao => Set<RelatorioProducao>();
 

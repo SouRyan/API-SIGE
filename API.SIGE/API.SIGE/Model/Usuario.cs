@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SIGE.API.Models
 {
@@ -25,7 +26,8 @@ namespace SIGE.API.Models
         public bool Ativo { get; set; } = true;
 
         [ForeignKey("TipoUsuario")]
-        //public int IdTipoUsuario { get; set; }
+        public int IdTipoUsuario { get; set; }
+        [JsonIgnore]
         public virtual TipoUsuario? TipoUsuario { get; set; }
 
     }

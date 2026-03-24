@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace SIGE.API.Models
 
@@ -72,13 +73,14 @@ namespace SIGE.API.Models
         public string? ImagemObraPath { get; set; }
 
         // ID do evento no Google Calendar
-        [StringLength(100)]
-        public string? GoogleCalendarEventId { get; set; }
+        //[StringLength(100)]
+        //public string? GoogleCalendarEventId { get; set; }
 
         //lista de caixilhos
         //public List<Caixilho> Caixilhos { get; set; }
         [ForeignKey("Usuario")]
         public int IdUsuario { get; set; }
+        [JsonIgnore]
         public virtual Usuario? Usuario{ get; set; }
 
         //public int IdCaixilho { get; set; }
