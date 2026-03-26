@@ -36,7 +36,7 @@ namespace API.SIGE.Models
         public string? DescricaoCaixilho { get; set; }
 
 
-        //public string StatusProducao { get; set; } = "Pendente"; // enum
+        public StatusProducao StatusProducao { get; set; } // enum PARA MEDIÇÃO - PRODUÇÃO - CONCLUIDO
 
         [ForeignKey("Obra")]
         public int ObraId { get; set; }
@@ -47,12 +47,15 @@ namespace API.SIGE.Models
         public int IdFamiliaCaixilho { get; set; }
         [JsonIgnore]
         public virtual FamiliaCaixilho? FamiliaCaixilho { get; set; }
-
-        //[ForeignKey("TipoCaixilho")]
-        //public int IdTipoCaixilho { get; set; }
-        //public virtual TipoCaixilho? TipoCaixilho{ get; set; }
-
-
-
+        
     }
+
+    public enum StatusProducao
+    {
+        ParaMedir = 1,
+        Medido = 2,
+        Concluido = 3,
+        Pendente = 4
+    }
+
 }

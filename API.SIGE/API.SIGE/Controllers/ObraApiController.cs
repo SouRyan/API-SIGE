@@ -13,7 +13,7 @@ public class ObraApiController : ControllerBase
 {
     private readonly IObraRepository _obraRepository;
     //private readonly GoogleCalendarService _calendarService;
-    private readonly string _calendarId;
+    //private readonly string _calendarId;
 
     public ObraApiController(
         IObraRepository obraRepository,

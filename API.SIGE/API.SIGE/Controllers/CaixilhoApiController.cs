@@ -33,6 +33,13 @@ public class CaixilhoApiController : ControllerBase
         if (item == null) return NotFound();
         return Ok(item);
     }
+    //[HttpGet("Family")]
+    //public async Task<ActionResult<Caixilho>> GetByFamilia([FromBody] Caixilho caixilho)
+    //{
+    //    var item = await _caixilhoRepository.GetByFamilia(caixilho);
+    //    if (item == null) return NotFound();
+    //    return Ok(item);
+    //}
 
     [HttpPost]
     public async Task<ActionResult> Create([FromBody] Caixilho caixilho)

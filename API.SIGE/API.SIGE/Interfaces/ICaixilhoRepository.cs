@@ -6,6 +6,7 @@ namespace API.SIGE.Interfaces
     {
         Task<List<Caixilho>> GetAllAsync();
          Task<Caixilho?> GetById(int id);
+        Task<Caixilho> GetByFamilia(Caixilho caixilho);
          Task AddAsync(Caixilho caixilho);
          Task UpdateAsync(Caixilho caixilho);
          Task DeleteAsync(int id);

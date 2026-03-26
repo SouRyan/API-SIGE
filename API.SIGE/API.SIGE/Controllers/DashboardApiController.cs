@@ -34,25 +34,25 @@ public class DashboardApiController : ControllerBase
         });
     }
 
-    [HttpGet("producao-por-mes")]
-    public async Task<ActionResult> GetProducaoPorMes()
-    {
-        var data = await _context.Producoes
-            .GroupBy(p => new { p.DataProducao.Year, p.DataProducao.Month })
-            .Select(g => new
-            {
-                ano = g.Key.Year,
-                mes = g.Key.Month,
-                total = g.Count(),
-                concluidas = g.Count(x => x.Produzido)
-            })
-            .OrderBy(x => x.ano)
-            .ThenBy(x => x.mes)
-            .Take(12)
-            .ToListAsync();
+    //[HttpGet("producao-por-mes")]
+    //public async Task<ActionResult> GetProducaoPorMes()
+    //{
+    //    var data = await _context.Producoes
+    //        .GroupBy(p => new { p.DataProducao.Year, p.DataProducao.Month })
+    //        .Select(g => new
+    //        {
+    //            ano = g.Key.Year,
+    //            mes = g.Key.Month,
+    //            total = g.Count(),
+    //            concluidas = g.Count(x => x.Produzido)
+    //        })
+    //        .OrderBy(x => x.ano)
+    //        .ThenBy(x => x.mes)
+    //        .Take(12)
+    //        .ToListAsync();
 
-        return Ok(data);
-    }
+    //    return Ok(data);
+    //}
 
     [HttpPost("atualizar-progresso-obras")]
     public async Task<ActionResult> AtualizarProgressoObras()
