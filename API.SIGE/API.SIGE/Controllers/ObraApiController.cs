@@ -1,111 +1,91 @@
-//using GerenciamentoProducao.Services;
-using API.SIGE.Interfaces;
-using SIGE.API.Models;
-using Microsoft.AspNetCore.Cors;
+using API.SIGE.DTOs;
+using API.SIGE.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.SIGE.Controllers;
 
-[EnableCors("MyPolicy")]
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/obra")]
 public class ObraApiController : ControllerBase
 {
-    private readonly IObraRepository _obraRepository;
-    //private readonly GoogleCalendarService _calendarService;
-    //private readonly string _calendarId;
+    private readonly IObraService _obraService;
 
-    public ObraApiController(
-        IObraRepository obraRepository,
-        //GoogleCalendarService calendarService,
-        IConfiguration configuration)
+    public ObraApiController(IObraService obraService)
     {
-        _obraRepository = obraRepository;
-        //_calendarService = calendarService;
-        //_calendarId = configuration["Google:key"] ?? string.Empty;
+        _obraService = obraService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Obra>>> GetAll([FromQuery] bool? finalizadas = null)
+    public async Task<ActionResult<List<ObraResponseDto>>> GetAll([FromQuery] bool? finalizadas = null)
     {
-        var obras = finalizadas switch
-        {
-            true => await _obraRepository.GetAllFinalizadosAsync(),
-            false => await _obraRepository.GetAllNaoFinalizadosAsync(),
-            _ => await _obraRepository.GetAllAsync()
-        };
-
-        return Ok(obras.OrderByDescending(o => o.IdObra));
+        var obras = await _obraService.GetAllAsync(finalizadas);
+        return Ok(obras);
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Obra>> GetById(int id)
+    public async Task<ActionResult<ObraResponseDto>> GetById(int id)
     {
-        var obra = await _obraRepository.GetById(id);
+        var obra = await _obraService.GetByIdAsync(id);
         if (obra == null) return NotFound();
         return Ok(obra);
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create([FromBody] Obra obra)
+    public async Task<ActionResult<ObraResponseDto>> Create([FromBody] ObraCreateDto dto)
     {
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
 
-        //if (!string.IsNullOrWhiteSpace(_calendarId))
-        //{
-        //    try
-        //    {
-        //        var ev = _calendarService.CreateEvent(
-        //            _calendarId,
-        //            $"Obra: {obra.Nome}",
-        //            obra.DataInicio,
-        //            obra.DataTermino,
-        //            $"Construtora: {obra.Construtora}");
-
-        //        obra.GoogleCalendarEventId = ev.Id;
-        //    }
-        //    catch
-        //    {
-        //        // Falha no calendar nao bloqueia a criacao da obra.
-        //    }
-        //}
-
-        await _obraRepository.AddAsync(obra);
+        var obra = await _obraService.CreateAsync(dto);
         return CreatedAtAction(nameof(GetById), new { id = obra.IdObra }, obra);
     }
 
     [HttpPut("{id:int}")]
-    public async Task<ActionResult> Update(int id, [FromBody] Obra obra)
+    public async Task<ActionResult> Update(int id, [FromBody] ObraUpdateDto dto)
     {
-        if (id != obra.IdObra) return BadRequest("ID inválido.");
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
 
-        var existente = await _obraRepository.GetById(id);
+        var existente = await _obraService.GetByIdAsync(id);
         if (existente == null) return NotFound();
 
-        await _obraRepository.UpdateAsync(obra);
+        await _obraService.UpdateAsync(id, dto);
         return NoContent();
     }
 
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> Delete(int id)
     {
-        var obra = await _obraRepository.GetById(id);
-        if (obra == null) return NotFound();
+        var existente = await _obraService.GetByIdAsync(id);
+        if (existente == null) return NotFound();
 
-        //if (!string.IsNullOrWhiteSpace(_calendarId) && !string.IsNullOrWhiteSpace(obra.GoogleCalendarEventId))
-        //{
-        //    try
-        //    {
-        //        _calendarService.DeleteEvent(_calendarId, obra.GoogleCalendarEventId);
-        //    }
-        //    catch
-        //    {
-        //        // Falha no calendar nao bloqueia a exclusao da obra.
-        //    }
-        //}
-
-        await _obraRepository.DeleteAsync(id);
+        await _obraService.DeleteAsync(id);
         return NoContent();
+    }
+
+    [HttpPost("{id:int}/verificar")]
+    public async Task<ActionResult> Verificar(int id)
+    {
+        try
+        {
+            await _obraService.VerificarAsync(id);
+            return NoContent();
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    [HttpPost("{id:int}/concluir")]
+    public async Task<ActionResult> Concluir(int id)
+    {
+        try
+        {
+            await _obraService.ConcluirAsync(id);
+            return NoContent();
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 }

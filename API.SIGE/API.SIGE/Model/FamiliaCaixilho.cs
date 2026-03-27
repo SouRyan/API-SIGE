@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using API.SIGE.Models;
 
 namespace SIGE.API.Models
 {
@@ -14,7 +16,13 @@ namespace SIGE.API.Models
         [Required(ErrorMessage = "Campo Obrigatório")]
         public int PesoTotal { get; set; }
 
+        [Required]
+        public int IdObra { get; set; }
 
+        public StatusFamilia StatusFamilia { get; set; } = StatusFamilia.Pendente;
+
+        [JsonIgnore]
+        public virtual Obra? Obra { get; set; }
 
         //Verificar
         // Propriedade calculada para exibir o peso total formatado

@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using API.SIGE.Models;
 
 namespace SIGE.API.Models
 
@@ -61,6 +62,25 @@ namespace SIGE.API.Models
         //public string Bandeira { get; set; } = "Verde"; // Verde, Amarela, Vermelha, Crítica
 
         public float PercentualConclusao { get; set; } = 0;
+
+        public StatusObra StatusObra { get; set; } = StatusObra.Cadastrada;
+
+        public float PercentualMedicao { get; set; }
+
+        public float PercentualProducao { get; set; }
+
+        public int? IdResponsavelVerificacao { get; set; }
+        public int? IdResponsavelMedicao { get; set; }
+        public int? IdResponsavelProducao { get; set; }
+
+        [JsonIgnore]
+        public virtual Usuario? ResponsavelVerificacao { get; set; }
+        [JsonIgnore]
+        public virtual Usuario? ResponsavelMedicao { get; set; }
+        [JsonIgnore]
+        public virtual Usuario? ResponsavelProducao { get; set; }
+
+        public virtual ICollection<FamiliaCaixilho>? FamiliasCaixilho { get; set; }
 
         public DateTime? DataConclusao { get; set; }
 

@@ -1,15 +1,17 @@
+using API.SIGE.Models;
 using SIGE.API.Models;
 
-namespace API.SIGE.Interfaces
+namespace API.SIGE.Interfaces.Repositories;
+
+public interface IFamiliaCaixilhoRepository
 {
-    public interface IFamiliaCaixilhoRepository
-    {
-         Task<List<FamiliaCaixilho>> GetAllAsync();
-         Task AddAsync(FamiliaCaixilho familiaCaixilho);
-         Task UpdateAsync(FamiliaCaixilho familiaCaixilho);
-         Task DeleteAsync(int id);
-         Task<FamiliaCaixilho?> GetByIdAsync(int id);
-         Task<float> CalcularPesoTotalAsync(int familiaId);
-         Task AtualizarPesoTotalAsync(int familiaId);
-    }
+    Task<List<FamiliaCaixilho>> GetAllAsync();
+    Task<List<FamiliaCaixilho>> GetByObraIdAsync(int obraId);
+    Task<int> CountByObraIdAsync(int obraId);
+    Task AddAsync(FamiliaCaixilho familiaCaixilho);
+    Task UpdateAsync(FamiliaCaixilho familiaCaixilho);
+    Task DeleteAsync(int id);
+    Task<FamiliaCaixilho?> GetByIdAsync(int id);
+    Task<float> CalcularPesoTotalAsync(int familiaId);
+    Task AtualizarPesoTotalAsync(int familiaId);
 }

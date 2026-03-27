@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
+using API.SIGE.Models;
 
 namespace SIGE.API.Models
 {
@@ -29,6 +30,9 @@ namespace SIGE.API.Models
         public int IdTipoUsuario { get; set; }
         [JsonIgnore]
         public virtual TipoUsuario? TipoUsuario { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<UsuarioCargo>? UsuarioCargos { get; set; }
 
     }
 }

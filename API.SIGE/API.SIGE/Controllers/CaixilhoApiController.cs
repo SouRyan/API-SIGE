@@ -1,92 +1,73 @@
-using API.SIGE.Interfaces;
-using API.SIGE.Models;
-using Microsoft.AspNetCore.Cors;
+using API.SIGE.DTOs;
+using API.SIGE.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SIGE.API.ApiControllers;
+namespace API.SIGE.Controllers;
 
-[EnableCors("MyPolicy")]
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/caixilho")]
 public class CaixilhoApiController : ControllerBase
 {
-    private readonly ICaixilhoRepository _caixilhoRepository;
-    private readonly IObraRepository _obraRepository;
+    private readonly ICaixilhoService _caixilhoService;
 
-    public CaixilhoApiController(ICaixilhoRepository caixilhoRepository, IObraRepository obraRepository)
+    public CaixilhoApiController(ICaixilhoService caixilhoService)
     {
-        _caixilhoRepository = caixilhoRepository;
-        _obraRepository = obraRepository;
+        _caixilhoService = caixilhoService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<Caixilho>>> GetAll()
+    public async Task<ActionResult<List<CaixilhoResponseDto>>> GetAll()
     {
-        var lista = await _caixilhoRepository.GetAllAsync();
+        var lista = await _caixilhoService.GetAllAsync();
         return Ok(lista);
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<Caixilho>> GetById(int id)
+    public async Task<ActionResult<CaixilhoResponseDto>> GetById(int id)
     {
-        var item = await _caixilhoRepository.GetById(id);
+        var item = await _caixilhoService.GetByIdAsync(id);
         if (item == null) return NotFound();
         return Ok(item);
     }
-    //[HttpGet("Family")]
-    //public async Task<ActionResult<Caixilho>> GetByFamilia([FromBody] Caixilho caixilho)
-    //{
-    //    var item = await _caixilhoRepository.GetByFamilia(caixilho);
-    //    if (item == null) return NotFound();
-    //    return Ok(item);
-    //}
 
     [HttpPost]
-    public async Task<ActionResult> Create([FromBody] Caixilho caixilho)
+    public async Task<ActionResult<CaixilhoResponseDto>> Create([FromBody] CaixilhoCreateDto dto)
     {
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
 
-        var obra = await _obraRepository.GetById(caixilho.ObraId);
-        if (obra == null) return BadRequest("ObraId inválido.");
-
-        await _caixilhoRepository.AddAsync(caixilho);
+        var caixilho = await _caixilhoService.CreateAsync(dto);
         return CreatedAtAction(nameof(GetById), new { id = caixilho.IdCaixilho }, caixilho);
     }
 
     [HttpPut("{id:int}")]
-    public async Task<ActionResult> Update(int id, [FromBody] Caixilho caixilho)
+    public async Task<ActionResult> Update(int id, [FromBody] CaixilhoUpdateDto dto)
     {
-        if (id != caixilho.IdCaixilho) return BadRequest("ID inválido.");
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
 
-        var existente = await _caixilhoRepository.GetById(id);
+        var existente = await _caixilhoService.GetByIdAsync(id);
         if (existente == null) return NotFound();
 
-        await _caixilhoRepository.UpdateAsync(caixilho);
+        await _caixilhoService.UpdateAsync(id, dto);
         return NoContent();
     }
 
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> Delete(int id)
     {
-        var existente = await _caixilhoRepository.GetById(id);
+        var existente = await _caixilhoService.GetByIdAsync(id);
         if (existente == null) return NotFound();
 
-        await _caixilhoRepository.DeleteAsync(id);
+        await _caixilhoService.DeleteAsync(id);
         return NoContent();
     }
 
     [HttpPost("{id:int}/liberar")]
     public async Task<ActionResult> Liberar(int id)
     {
-        var caixilho = await _caixilhoRepository.GetById(id);
-        if (caixilho == null) return NotFound();
+        var existente = await _caixilhoService.GetByIdAsync(id);
+        if (existente == null) return NotFound();
 
-        caixilho.Liberado = true;
-        caixilho.DataLiberacao = DateTime.Now;
-        //caixilho.StatusProducao = "Liberado";
-        await _caixilhoRepository.UpdateAsync(caixilho);
-
+        await _caixilhoService.LiberarAsync(id);
         return Ok(new { success = true });
     }
 }

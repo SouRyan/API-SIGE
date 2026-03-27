@@ -22,6 +22,58 @@ namespace API.SIGE.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("API.SIGE.Models.Anexo", b =>
+                {
+                    b.Property<int>("IdAnexo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdAnexo"));
+
+                    b.Property<string>("CaminhoArquivo")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<DateTime>("DataUpload")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int?>("IdMedicao")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("IdProducaoFamilia")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("NomeArquivo")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("character varying(255)");
+
+                    b.Property<long>("TamanhoBytes")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("TipoAnexo")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("TipoArquivo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("IdAnexo");
+
+                    b.HasIndex("IdMedicao");
+
+                    b.HasIndex("IdProducaoFamilia");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.ToTable("Anexo");
+                });
+
             modelBuilder.Entity("API.SIGE.Models.Caixilho", b =>
                 {
                     b.Property<int>("IdCaixilho")
@@ -66,6 +118,9 @@ namespace API.SIGE.Migrations
                     b.Property<int>("Quantidade")
                         .HasColumnType("integer");
 
+                    b.Property<int>("StatusProducao")
+                        .HasColumnType("integer");
+
                     b.HasKey("IdCaixilho");
 
                     b.HasIndex("IdFamiliaCaixilho");
@@ -73,6 +128,208 @@ namespace API.SIGE.Migrations
                     b.HasIndex("ObraId");
 
                     b.ToTable("Caixilho");
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.Cargo", b =>
+                {
+                    b.Property<int>("IdCargo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCargo"));
+
+                    b.Property<string>("DescricaoCargo")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("TipoCargo")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IdCargo");
+
+                    b.HasIndex("TipoCargo")
+                        .IsUnique();
+
+                    b.ToTable("Cargo");
+
+                    b.HasData(
+                        new
+                        {
+                            IdCargo = 1,
+                            DescricaoCargo = "Gerente",
+                            TipoCargo = 1
+                        },
+                        new
+                        {
+                            IdCargo = 2,
+                            DescricaoCargo = "Responsável pela verificação",
+                            TipoCargo = 2
+                        },
+                        new
+                        {
+                            IdCargo = 3,
+                            DescricaoCargo = "Responsável pela medição",
+                            TipoCargo = 3
+                        },
+                        new
+                        {
+                            IdCargo = 4,
+                            DescricaoCargo = "Responsável pela produção",
+                            TipoCargo = 4
+                        });
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.Medicao", b =>
+                {
+                    b.Property<int>("IdMedicao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdMedicao"));
+
+                    b.Property<DateTime?>("DataConclusao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DataEstimadaConclusao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DataInicio")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<int>("IdFamiliaCaixilho")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdResponsavel")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Observacoes")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IdMedicao");
+
+                    b.HasIndex("IdFamiliaCaixilho");
+
+                    b.HasIndex("IdResponsavel");
+
+                    b.ToTable("Medicao");
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.Notificacao", b =>
+                {
+                    b.Property<int>("IdNotificacao")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdNotificacao"));
+
+                    b.Property<DateTime>("DataCriacao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int?>("IdObra")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdUsuarioDestino")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Lida")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Mensagem")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<int>("TipoNotificacao")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.HasKey("IdNotificacao");
+
+                    b.HasIndex("IdObra");
+
+                    b.HasIndex("IdUsuarioDestino");
+
+                    b.ToTable("Notificacao");
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.ProducaoFamilia", b =>
+                {
+                    b.Property<int>("IdProducaoFamilia")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdProducaoFamilia"));
+
+                    b.Property<DateTime?>("DataConclusao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DataEstimadaConclusao")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DataInicio")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Descricao")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<int>("IdFamiliaCaixilho")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdResponsavel")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Observacoes")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IdProducaoFamilia");
+
+                    b.HasIndex("IdFamiliaCaixilho");
+
+                    b.HasIndex("IdResponsavel");
+
+                    b.ToTable("ProducaoFamilia");
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.UsuarioCargo", b =>
+                {
+                    b.Property<int>("IdUsuarioCargo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdUsuarioCargo"));
+
+                    b.Property<int>("IdCargo")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IdUsuario")
+                        .HasColumnType("integer");
+
+                    b.HasKey("IdUsuarioCargo");
+
+                    b.HasIndex("IdCargo");
+
+                    b.HasIndex("IdUsuario", "IdCargo")
+                        .IsUnique();
+
+                    b.ToTable("UsuarioCargo");
                 });
 
             modelBuilder.Entity("SIGE.API.Models.FamiliaCaixilho", b =>
@@ -88,10 +345,18 @@ namespace API.SIGE.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<int>("IdObra")
+                        .HasColumnType("integer");
+
                     b.Property<int>("PesoTotal")
                         .HasColumnType("integer");
 
+                    b.Property<int>("StatusFamilia")
+                        .HasColumnType("integer");
+
                     b.HasKey("IdFamiliaCaixilho");
+
+                    b.HasIndex("IdObra");
 
                     b.ToTable("FamiliaCaixilho");
                 });
@@ -136,6 +401,15 @@ namespace API.SIGE.Migrations
                     b.Property<bool>("Finalizado")
                         .HasColumnType("boolean");
 
+                    b.Property<int?>("IdResponsavelMedicao")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("IdResponsavelProducao")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("IdResponsavelVerificacao")
+                        .HasColumnType("integer");
+
                     b.Property<int>("IdUsuario")
                         .HasColumnType("integer");
 
@@ -165,11 +439,20 @@ namespace API.SIGE.Migrations
                     b.Property<float>("PercentualConclusao")
                         .HasColumnType("real");
 
+                    b.Property<float>("PercentualMedicao")
+                        .HasColumnType("real");
+
+                    b.Property<float>("PercentualProducao")
+                        .HasColumnType("real");
+
                     b.Property<float>("PesoFinal")
                         .HasColumnType("real");
 
                     b.Property<float>("PesoProduzido")
                         .HasColumnType("real");
+
+                    b.Property<int>("StatusObra")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Uf")
                         .IsRequired()
@@ -178,100 +461,15 @@ namespace API.SIGE.Migrations
 
                     b.HasKey("IdObra");
 
+                    b.HasIndex("IdResponsavelMedicao");
+
+                    b.HasIndex("IdResponsavelProducao");
+
+                    b.HasIndex("IdResponsavelVerificacao");
+
                     b.HasIndex("IdUsuario");
 
                     b.ToTable("Obra");
-                });
-
-            modelBuilder.Entity("SIGE.API.Models.Producao", b =>
-                {
-                    b.Property<int>("IdProducao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdProducao"));
-
-                    b.Property<DateTime>("DataProducao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Descricao")
-                        .HasMaxLength(200)
-                        .HasColumnType("character varying(200)");
-
-                    b.Property<bool>("EhLiberado")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("FamiliaCaixilhoId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("NomeProducao")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)");
-
-                    b.Property<bool>("Produzido")
-                        .HasColumnType("boolean");
-
-                    b.HasKey("IdProducao");
-
-                    b.HasIndex("FamiliaCaixilhoId");
-
-                    b.HasIndex("IdUsuario");
-
-                    b.ToTable("Producao");
-                });
-
-            modelBuilder.Entity("SIGE.API.Models.RelatorioProducao", b =>
-                {
-                    b.Property<int>("IdRelatorio")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdRelatorio"));
-
-                    b.Property<int>("Ano")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime>("DataRelatorio")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<float>("EficienciaProducao")
-                        .HasColumnType("real");
-
-                    b.Property<int>("IdUsuario")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Mes")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Observacoes")
-                        .HasMaxLength(1000)
-                        .HasColumnType("character varying(1000)");
-
-                    b.Property<float>("PesoTotalProduzido")
-                        .HasColumnType("real");
-
-                    b.Property<string>("StatusMeta")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<float>("TempoMedioProducao")
-                        .HasColumnType("real");
-
-                    b.Property<int>("TotalCaixilhosProduzidos")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("TotalFamiliasProduzidas")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IdRelatorio");
-
-                    b.HasIndex("IdUsuario");
-
-                    b.ToTable("RelatorioProducao");
                 });
 
             modelBuilder.Entity("SIGE.API.Models.TipoUsuario", b =>
@@ -333,6 +531,31 @@ namespace API.SIGE.Migrations
                     b.ToTable("Usuario");
                 });
 
+            modelBuilder.Entity("API.SIGE.Models.Anexo", b =>
+                {
+                    b.HasOne("API.SIGE.Models.Medicao", "Medicao")
+                        .WithMany()
+                        .HasForeignKey("IdMedicao")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("API.SIGE.Models.ProducaoFamilia", "ProducaoFamilia")
+                        .WithMany()
+                        .HasForeignKey("IdProducaoFamilia")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("SIGE.API.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Medicao");
+
+                    b.Navigation("ProducaoFamilia");
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("API.SIGE.Models.Caixilho", b =>
                 {
                     b.HasOne("SIGE.API.Models.FamiliaCaixilho", "FamiliaCaixilho")
@@ -352,43 +575,120 @@ namespace API.SIGE.Migrations
                     b.Navigation("Obra");
                 });
 
-            modelBuilder.Entity("SIGE.API.Models.Obra", b =>
-                {
-                    b.HasOne("SIGE.API.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("SIGE.API.Models.Producao", b =>
+            modelBuilder.Entity("API.SIGE.Models.Medicao", b =>
                 {
                     b.HasOne("SIGE.API.Models.FamiliaCaixilho", "FamiliaCaixilho")
                         .WithMany()
-                        .HasForeignKey("FamiliaCaixilhoId")
+                        .HasForeignKey("IdFamiliaCaixilho")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SIGE.API.Models.Usuario", "Usuario")
+                    b.HasOne("SIGE.API.Models.Usuario", "Responsavel")
                         .WithMany()
-                        .HasForeignKey("IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .HasForeignKey("IdResponsavel")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("FamiliaCaixilho");
 
+                    b.Navigation("Responsavel");
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.Notificacao", b =>
+                {
+                    b.HasOne("SIGE.API.Models.Obra", "Obra")
+                        .WithMany()
+                        .HasForeignKey("IdObra")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("SIGE.API.Models.Usuario", "UsuarioDestino")
+                        .WithMany()
+                        .HasForeignKey("IdUsuarioDestino")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Obra");
+
+                    b.Navigation("UsuarioDestino");
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.ProducaoFamilia", b =>
+                {
+                    b.HasOne("SIGE.API.Models.FamiliaCaixilho", "FamiliaCaixilho")
+                        .WithMany()
+                        .HasForeignKey("IdFamiliaCaixilho")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SIGE.API.Models.Usuario", "Responsavel")
+                        .WithMany()
+                        .HasForeignKey("IdResponsavel")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("FamiliaCaixilho");
+
+                    b.Navigation("Responsavel");
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.UsuarioCargo", b =>
+                {
+                    b.HasOne("API.SIGE.Models.Cargo", "Cargo")
+                        .WithMany("UsuarioCargos")
+                        .HasForeignKey("IdCargo")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SIGE.API.Models.Usuario", "Usuario")
+                        .WithMany("UsuarioCargos")
+                        .HasForeignKey("IdUsuario")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Cargo");
+
                     b.Navigation("Usuario");
                 });
 
-            modelBuilder.Entity("SIGE.API.Models.RelatorioProducao", b =>
+            modelBuilder.Entity("SIGE.API.Models.FamiliaCaixilho", b =>
                 {
+                    b.HasOne("SIGE.API.Models.Obra", "Obra")
+                        .WithMany("FamiliasCaixilho")
+                        .HasForeignKey("IdObra")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Obra");
+                });
+
+            modelBuilder.Entity("SIGE.API.Models.Obra", b =>
+                {
+                    b.HasOne("SIGE.API.Models.Usuario", "ResponsavelMedicao")
+                        .WithMany()
+                        .HasForeignKey("IdResponsavelMedicao")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("SIGE.API.Models.Usuario", "ResponsavelProducao")
+                        .WithMany()
+                        .HasForeignKey("IdResponsavelProducao")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.HasOne("SIGE.API.Models.Usuario", "ResponsavelVerificacao")
+                        .WithMany()
+                        .HasForeignKey("IdResponsavelVerificacao")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("SIGE.API.Models.Usuario", "Usuario")
                         .WithMany()
                         .HasForeignKey("IdUsuario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ResponsavelMedicao");
+
+                    b.Navigation("ResponsavelProducao");
+
+                    b.Navigation("ResponsavelVerificacao");
 
                     b.Navigation("Usuario");
                 });
@@ -402,6 +702,21 @@ namespace API.SIGE.Migrations
                         .IsRequired();
 
                     b.Navigation("TipoUsuario");
+                });
+
+            modelBuilder.Entity("API.SIGE.Models.Cargo", b =>
+                {
+                    b.Navigation("UsuarioCargos");
+                });
+
+            modelBuilder.Entity("SIGE.API.Models.Obra", b =>
+                {
+                    b.Navigation("FamiliasCaixilho");
+                });
+
+            modelBuilder.Entity("SIGE.API.Models.Usuario", b =>
+                {
+                    b.Navigation("UsuarioCargos");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\controllers\\caixilhoapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\caixilhoapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\repositories\\caixilhorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\repositories\\caixilhorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\model\\caixilho.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\model\\caixilho.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\repositories\\familiacaixilhorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\repositories\\familiacaixilhorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Migrations\\20260327232402_Refatoracao-01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:API.SIGE\\Migrations\\20260327232402_Refatoracao-01.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,67 +34,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
-              "RelativeDocumentMoniker": "API.SIGE\\Program.cs",
-              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
-              "RelativeToolTip": "API.SIGE\\Program.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAIAwwBQAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T23:57:10.605Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CaixilhoApiController.cs",
-              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\CaixilhoApiController.cs",
-              "RelativeDocumentMoniker": "API.SIGE\\Controllers\\CaixilhoApiController.cs",
-              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\CaixilhoApiController.cs",
-              "RelativeToolTip": "API.SIGE\\Controllers\\CaixilhoApiController.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwCkAAAAHAAAAAAAAAA==",
+              "Title": "20260327232402_Refatoracao-01.cs",
+              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Migrations\\20260327232402_Refatoracao-01.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Migrations\\20260327232402_Refatoracao-01.cs",
+              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Migrations\\20260327232402_Refatoracao-01.cs",
+              "RelativeToolTip": "API.SIGE\\Migrations\\20260327232402_Refatoracao-01.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T23:36:10.327Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Caixilho.cs",
-              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Model\\Caixilho.cs",
-              "RelativeDocumentMoniker": "API.SIGE\\Model\\Caixilho.cs",
-              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Model\\Caixilho.cs",
-              "RelativeToolTip": "API.SIGE\\Model\\Caixilho.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAswDkAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T23:28:18.173Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CaixilhoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Repositories\\CaixilhoRepository.cs",
-              "RelativeDocumentMoniker": "API.SIGE\\Repositories\\CaixilhoRepository.cs",
-              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Repositories\\CaixilhoRepository.cs",
-              "RelativeToolTip": "API.SIGE\\Repositories\\CaixilhoRepository.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAwwDcAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T23:00:46.086Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "FamiliaCaixilhoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Repositories\\FamiliaCaixilhoRepository.cs",
-              "RelativeDocumentMoniker": "API.SIGE\\Repositories\\FamiliaCaixilhoRepository.cs",
-              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Repositories\\FamiliaCaixilhoRepository.cs",
-              "RelativeToolTip": "API.SIGE\\Repositories\\FamiliaCaixilhoRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-25T23:00:33.785Z",
+              "WhenOpened": "2026-03-27T23:24:02.17Z",
               "EditorCaption": ""
             }
           ]

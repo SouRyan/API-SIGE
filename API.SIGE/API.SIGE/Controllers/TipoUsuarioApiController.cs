@@ -1,65 +1,63 @@
-using API.SIGE.Interfaces;
-using Microsoft.AspNetCore.Cors;
+using API.SIGE.DTOs;
+using API.SIGE.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
-using SIGE.API.Models;
 
 namespace API.SIGE.Controllers;
 
-[EnableCors("MyPolicy")]
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/tipo-usuario")]
 public class TipoUsuarioApiController : ControllerBase
 {
-    private readonly ITipoUsuarioRepository _tipoUsuarioRepository;
+    private readonly ITipoUsuarioService _tipoUsuarioService;
 
-    public TipoUsuarioApiController(ITipoUsuarioRepository tipoUsuarioRepository)
+    public TipoUsuarioApiController(ITipoUsuarioService tipoUsuarioService)
     {
-        _tipoUsuarioRepository = tipoUsuarioRepository;
+        _tipoUsuarioService = tipoUsuarioService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<TipoUsuario>>> GetAll()
+    public async Task<ActionResult<List<TipoUsuarioResponseDto>>> GetAll()
     {
-        var lista = await _tipoUsuarioRepository.GetAllAsync();
+        var lista = await _tipoUsuarioService.GetAllAsync();
         return Ok(lista);
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<TipoUsuario>> GetById(int id)
+    public async Task<ActionResult<TipoUsuarioResponseDto>> GetById(int id)
     {
-        var item = await _tipoUsuarioRepository.GetById(id);
+        var item = await _tipoUsuarioService.GetByIdAsync(id);
         if (item == null) return NotFound();
         return Ok(item);
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create([FromBody] TipoUsuario tipoUsuario)
+    public async Task<ActionResult<TipoUsuarioResponseDto>> Create([FromBody] TipoUsuarioCreateDto dto)
     {
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
-        await _tipoUsuarioRepository.AddAsync(tipoUsuario);
-        return CreatedAtAction(nameof(GetById), new { id = tipoUsuario.IdTipoUsuario }, tipoUsuario);
+
+        var tipo = await _tipoUsuarioService.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetById), new { id = tipo.IdTipoUsuario }, tipo);
     }
 
     [HttpPut("{id:int}")]
-    public async Task<ActionResult> Update(int id, [FromBody] TipoUsuario tipoUsuario)
+    public async Task<ActionResult> Update(int id, [FromBody] TipoUsuarioCreateDto dto)
     {
-        if (id != tipoUsuario.IdTipoUsuario) return BadRequest("ID inválido.");
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
 
-        var existente = await _tipoUsuarioRepository.GetById(id);
+        var existente = await _tipoUsuarioService.GetByIdAsync(id);
         if (existente == null) return NotFound();
 
-        await _tipoUsuarioRepository.UpdateAsync(tipoUsuario);
+        await _tipoUsuarioService.UpdateAsync(id, dto);
         return NoContent();
     }
 
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> Delete(int id)
     {
-        var existente = await _tipoUsuarioRepository.GetById(id);
+        var existente = await _tipoUsuarioService.GetByIdAsync(id);
         if (existente == null) return NotFound();
 
-        await _tipoUsuarioRepository.DeleteAsync(id);
+        await _tipoUsuarioService.DeleteAsync(id);
         return NoContent();
     }
 }

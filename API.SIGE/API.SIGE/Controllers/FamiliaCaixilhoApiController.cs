@@ -1,78 +1,77 @@
-using API.SIGE.Interfaces;
-using SIGE.API.Models;
-using Microsoft.AspNetCore.Cors;
+using API.SIGE.DTOs;
+using API.SIGE.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.SIGE.Controllers;
 
-[EnableCors("MyPolicy")]
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/familia-caixilho")]
 public class FamiliaCaixilhoApiController : ControllerBase
 {
-    private readonly IFamiliaCaixilhoRepository _familiaCaixilhoRepository;
+    private readonly IFamiliaCaixilhoService _familiaService;
 
-    public FamiliaCaixilhoApiController(IFamiliaCaixilhoRepository familiaCaixilhoRepository)
+    public FamiliaCaixilhoApiController(IFamiliaCaixilhoService familiaService)
     {
-        _familiaCaixilhoRepository = familiaCaixilhoRepository;
+        _familiaService = familiaService;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<FamiliaCaixilho>>> GetAll()
+    public async Task<ActionResult<List<FamiliaCaixilhoResponseDto>>> GetAll()
     {
-        var lista = await _familiaCaixilhoRepository.GetAllAsync();
+        var lista = await _familiaService.GetAllAsync();
+        return Ok(lista);
+    }
+
+    [HttpGet("obra/{obraId:int}")]
+    public async Task<ActionResult<List<FamiliaCaixilhoResponseDto>>> GetByObra(int obraId)
+    {
+        var lista = await _familiaService.GetByObraIdAsync(obraId);
         return Ok(lista);
     }
 
     [HttpGet("{id:int}")]
-    public async Task<ActionResult<FamiliaCaixilho>> GetById(int id)
+    public async Task<ActionResult<FamiliaCaixilhoResponseDto>> GetById(int id)
     {
-        var item = await _familiaCaixilhoRepository.GetByIdAsync(id);
+        var item = await _familiaService.GetByIdAsync(id);
         if (item == null) return NotFound();
         return Ok(item);
     }
 
     [HttpPost]
-    public async Task<ActionResult> Create([FromBody] FamiliaCaixilho familia)
+    public async Task<ActionResult<FamiliaCaixilhoResponseDto>> Create([FromBody] FamiliaCaixilhoCreateDto dto)
     {
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
-        familia.PesoTotal = 0;
-        await _familiaCaixilhoRepository.AddAsync(familia);
+
+        var familia = await _familiaService.CreateAsync(dto);
         return CreatedAtAction(nameof(GetById), new { id = familia.IdFamiliaCaixilho }, familia);
     }
 
     [HttpPut("{id:int}")]
-    public async Task<ActionResult> Update(int id, [FromBody] FamiliaCaixilho familia)
+    public async Task<ActionResult> Update(int id, [FromBody] FamiliaCaixilhoUpdateDto dto)
     {
-        if (id != familia.IdFamiliaCaixilho) return BadRequest("ID inválido.");
         if (!ModelState.IsValid) return ValidationProblem(ModelState);
 
-        var existente = await _familiaCaixilhoRepository.GetByIdAsync(id);
+        var existente = await _familiaService.GetByIdAsync(id);
         if (existente == null) return NotFound();
 
-        await _familiaCaixilhoRepository.UpdateAsync(familia);
+        await _familiaService.UpdateAsync(id, dto);
         return NoContent();
     }
 
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> Delete(int id)
     {
-        var existente = await _familiaCaixilhoRepository.GetByIdAsync(id);
+        var existente = await _familiaService.GetByIdAsync(id);
         if (existente == null) return NotFound();
 
-        await _familiaCaixilhoRepository.DeleteAsync(id);
+        await _familiaService.DeleteAsync(id);
         return NoContent();
     }
 
     [HttpPost("recalcular-pesos")]
     public async Task<ActionResult> RecalcularPesos()
     {
-        var familias = await _familiaCaixilhoRepository.GetAllAsync();
-        foreach (var familia in familias)
-        {
-            await _familiaCaixilhoRepository.AtualizarPesoTotalAsync(familia.IdFamiliaCaixilho);
-        }
-
-        return Ok(new { success = true, total = familias.Count });
+        var total = await _familiaService.RecalcularPesosAsync();
+        return Ok(new { success = true, total });
     }
 }
