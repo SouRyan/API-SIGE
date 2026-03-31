@@ -1,4 +1,4 @@
-using API.SIGE.Models;
+using API.SIGE.Model;
 
 namespace API.SIGE.Interfaces.Repositories
 {

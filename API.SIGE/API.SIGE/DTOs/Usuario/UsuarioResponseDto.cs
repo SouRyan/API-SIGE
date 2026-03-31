@@ -10,6 +10,6 @@ namespace API.SIGE.DTOs
         public int IdTipoUsuario { get; set; }
         public string? NomeTipoUsuario { get; set; }
 
-        public List<CargoResponseDto> Cargos { get; set; } = new();
+        public CargoResponseDto? Cargo { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SIGE.API.Models
+namespace API.SIGE.Model
 {
     [Table("TipoUsuario")]
     public class TipoUsuario

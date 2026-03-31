@@ -1,7 +1,7 @@
 using API.SIGE.Data;
 using API.SIGE.Interfaces.Repositories;
+using API.SIGE.Model;
 using Microsoft.EntityFrameworkCore;
-using SIGE.API.Models;
 
 namespace API.SIGE.Repositories;
 

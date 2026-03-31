@@ -1,7 +1,7 @@
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
-using SIGE.API.Models;
+using API.SIGE.Model;
 
 namespace API.SIGE.Services;
 

@@ -1,6 +1,5 @@
-using API.SIGE.Models;
+using API.SIGE.Model;
 using Microsoft.EntityFrameworkCore;
-using SIGE.API.Models;
 
 namespace API.SIGE.Data;
 
@@ -17,7 +16,6 @@ public class AppDbData : DbContext
     public DbSet<TipoUsuario> TiposUsuario => Set<TipoUsuario>();
     public DbSet<FamiliaCaixilho> FamiliaCaixilhos => Set<FamiliaCaixilho>();
     public DbSet<Cargo> Cargos => Set<Cargo>();
-    public DbSet<UsuarioCargo> UsuarioCargos => Set<UsuarioCargo>();
     public DbSet<Medicao> Medicoes => Set<Medicao>();
     public DbSet<ProducaoFamilia> ProducoesFamilia => Set<ProducaoFamilia>();
     public DbSet<Anexo> Anexos => Set<Anexo>();
@@ -31,6 +29,11 @@ public class AppDbData : DbContext
                 .WithMany()
                 .HasForeignKey("IdTipoUsuario")
                 .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasOne(u => u.Cargo)
+                .WithMany(c => c.Usuarios)
+                .HasForeignKey(u => u.IdCargo)
+                .OnDelete(DeleteBehavior.SetNull);
         });
 
         modelBuilder.Entity<Obra>(entity =>
@@ -73,21 +76,6 @@ public class AppDbData : DbContext
                 new Cargo { IdCargo = 2, TipoCargo = TipoCargo.ResponsavelVerificacao, DescricaoCargo = "Responsável pela verificação" },
                 new Cargo { IdCargo = 3, TipoCargo = TipoCargo.ResponsavelMedicao, DescricaoCargo = "Responsável pela medição" },
                 new Cargo { IdCargo = 4, TipoCargo = TipoCargo.ResponsavelProducao, DescricaoCargo = "Responsável pela produção" });
-        });
-
-        modelBuilder.Entity<UsuarioCargo>(entity =>
-        {
-            entity.HasIndex(uc => new { uc.IdUsuario, uc.IdCargo }).IsUnique();
-
-            entity.HasOne(uc => uc.Usuario)
-                .WithMany(u => u.UsuarioCargos!)
-                .HasForeignKey(uc => uc.IdUsuario)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            entity.HasOne(uc => uc.Cargo)
-                .WithMany(c => c.UsuarioCargos!)
-                .HasForeignKey(uc => uc.IdCargo)
-                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<Medicao>(entity =>

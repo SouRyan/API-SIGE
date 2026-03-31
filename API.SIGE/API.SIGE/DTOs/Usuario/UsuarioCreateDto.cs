@@ -24,6 +24,7 @@ namespace API.SIGE.DTOs
         [Required(ErrorMessage = "Campo Obrigatório")]
         public int IdTipoUsuario { get; set; }
 
-        public List<int>? IdCargos { get; set; }
+        /// <summary>Cargo opcional (FK direta em Usuario).</summary>
+        public int? IdCargo { get; set; }
     }
 }

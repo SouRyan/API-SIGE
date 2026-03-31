@@ -1,24 +1,20 @@
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
-using API.SIGE.Models;
-using SIGE.API.Models;
+using API.SIGE.Model;
 
 namespace API.SIGE.Services;
 
 public class UsuarioService : IUsuarioService
 {
     private readonly IUsuarioRepository _usuarioRepository;
-    private readonly IUsuarioCargoRepository _usuarioCargoRepository;
     private readonly ICargoRepository _cargoRepository;
 
     public UsuarioService(
         IUsuarioRepository usuarioRepository,
-        IUsuarioCargoRepository usuarioCargoRepository,
         ICargoRepository cargoRepository)
     {
         _usuarioRepository = usuarioRepository;
-        _usuarioCargoRepository = usuarioCargoRepository;
         _cargoRepository = cargoRepository;
     }
 
@@ -54,6 +50,12 @@ public class UsuarioService : IUsuarioService
 
     public async Task<UsuarioResponseDto> CreateAsync(UsuarioCreateDto dto)
     {
+        if (dto.IdCargo.HasValue)
+        {
+            _ = await _cargoRepository.GetByIdAsync(dto.IdCargo.Value)
+                ?? throw new InvalidOperationException($"Cargo {dto.IdCargo} não encontrado.");
+        }
+
         var usuario = new Usuario
         {
             NomeUsuario = dto.NomeUsuario,
@@ -61,25 +63,10 @@ public class UsuarioService : IUsuarioService
             Senha = dto.Senha,
             Telefone = dto.Telefone,
             Ativo = true,
-            IdTipoUsuario = dto.IdTipoUsuario
+            IdTipoUsuario = dto.IdTipoUsuario,
+            IdCargo = dto.IdCargo
         };
         await _usuarioRepository.AddAsync(usuario);
-
-        if (dto.IdCargos != null)
-        {
-            foreach (var idCargo in dto.IdCargos)
-            {
-                _ = await _cargoRepository.GetByIdAsync(idCargo)
-                    ?? throw new InvalidOperationException($"Cargo {idCargo} não encontrado.");
-                if (await _usuarioCargoRepository.ExistsAsync(usuario.IdUsuario, idCargo))
-                    continue;
-                await _usuarioCargoRepository.AddAsync(new UsuarioCargo
-                {
-                    IdUsuario = usuario.IdUsuario,
-                    IdCargo = idCargo
-                });
-            }
-        }
 
         var created = await _usuarioRepository.GetById(usuario.IdUsuario);
         return Map(created!);
@@ -116,11 +103,6 @@ public class UsuarioService : IUsuarioService
             };
         }
 
-        var cargos = usuario.UsuarioCargos?
-            .Select(uc => uc.Cargo?.DescricaoCargo ?? uc.Cargo?.TipoCargo.ToString() ?? "")
-            .Where(s => !string.IsNullOrEmpty(s))
-            .ToList();
-
         return new LoginResponseDto
         {
             Success = true,
@@ -128,27 +110,26 @@ public class UsuarioService : IUsuarioService
             NomeUsuario = usuario.NomeUsuario,
             Email = usuario.Email,
             TipoUsuario = usuario.IdTipoUsuario,
-            Cargos = cargos
+            Cargo = usuario.Cargo?.DescricaoCargo
         };
     }
 
     public async Task AtribuirCargoAsync(int idUsuario, int idCargo)
     {
-        _ = await _usuarioRepository.GetById(idUsuario)
+        var usuario = await _usuarioRepository.GetById(idUsuario)
             ?? throw new InvalidOperationException("Usuário não encontrado.");
         _ = await _cargoRepository.GetByIdAsync(idCargo)
             ?? throw new InvalidOperationException("Cargo não encontrado.");
-        if (await _usuarioCargoRepository.ExistsAsync(idUsuario, idCargo))
-            return;
-        await _usuarioCargoRepository.AddAsync(new UsuarioCargo { IdUsuario = idUsuario, IdCargo = idCargo });
+        usuario.IdCargo = idCargo;
+        await _usuarioRepository.UpdateAsync(usuario);
     }
 
-    public async Task RemoverCargoAsync(int idUsuario, int idCargo)
+    public async Task RemoverCargoAsync(int idUsuario)
     {
-        var lista = await _usuarioCargoRepository.GetByUsuarioIdAsync(idUsuario);
-        var uc = lista.FirstOrDefault(x => x.IdCargo == idCargo)
-            ?? throw new InvalidOperationException("Usuário não possui este cargo.");
-        await _usuarioCargoRepository.DeleteAsync(uc.IdUsuarioCargo);
+        var usuario = await _usuarioRepository.GetById(idUsuario)
+            ?? throw new InvalidOperationException("Usuário não encontrado.");
+        usuario.IdCargo = null;
+        await _usuarioRepository.UpdateAsync(usuario);
     }
 
     private static UsuarioResponseDto Map(Usuario u) => new()
@@ -160,13 +141,13 @@ public class UsuarioService : IUsuarioService
         Ativo = u.Ativo,
         IdTipoUsuario = u.IdTipoUsuario,
         NomeTipoUsuario = u.TipoUsuario?.NomeTipoUsuario,
-        Cargos = u.UsuarioCargos?
-            .Where(uc => uc.Cargo != null)
-            .Select(uc => new CargoResponseDto
+        Cargo = u.Cargo == null
+            ? null
+            : new CargoResponseDto
             {
-                IdCargo = uc.Cargo!.IdCargo,
-                TipoCargo = uc.Cargo.TipoCargo,
-                DescricaoCargo = uc.Cargo.DescricaoCargo
-            }).ToList() ?? new List<CargoResponseDto>()
+                IdCargo = u.Cargo.IdCargo,
+                TipoCargo = u.Cargo.TipoCargo,
+                DescricaoCargo = u.Cargo.DescricaoCargo
+            }
     };
 }

@@ -1,5 +1,5 @@
 using API.SIGE.DTOs;
-using API.SIGE.Models;
+using API.SIGE.Model;
 
 namespace API.SIGE.Interfaces.Services;
 
@@ -16,5 +16,5 @@ public interface IUsuarioService
     Task AtivarAsync(int id);
     Task<LoginResponseDto> LoginAsync(LoginRequestDto dto);
     Task AtribuirCargoAsync(int idUsuario, int idCargo);
-    Task RemoverCargoAsync(int idUsuario, int idCargo);
+    Task RemoverCargoAsync(int idUsuario);
 }

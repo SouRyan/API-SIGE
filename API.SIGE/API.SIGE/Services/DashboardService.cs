@@ -1,7 +1,7 @@
 using API.SIGE.Data;
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Services;
-using API.SIGE.Models;
+using API.SIGE.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.SIGE.Services;

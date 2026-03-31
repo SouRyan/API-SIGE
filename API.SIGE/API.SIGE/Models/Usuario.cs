@@ -1,17 +1,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using API.SIGE.Models;
 
-namespace SIGE.API.Models
+namespace API.SIGE.Model
 {
-    [Table ("Usuario")]
+    [Table("Usuario")]
     public class Usuario
     {
         [Key]
         public int IdUsuario { get; set; }
         [Required(ErrorMessage = "Campo Obrigatório")]
-        [StringLength (50)]
+        [StringLength(50)]
         public string NomeUsuario { get; set; }
         [Required(ErrorMessage = "Campo Obrigatório")]
         [StringLength(100)]
@@ -31,8 +30,11 @@ namespace SIGE.API.Models
         [JsonIgnore]
         public virtual TipoUsuario? TipoUsuario { get; set; }
 
-        [JsonIgnore]
-        public virtual ICollection<UsuarioCargo>? UsuarioCargos { get; set; }
+        /// <summary>FK opcional para um cargo (1 usuário → 1 cargo).</summary>
+        public int? IdCargo { get; set; }
 
+        [JsonIgnore]
+        [ForeignKey(nameof(IdCargo))]
+        public virtual Cargo? Cargo { get; set; }
     }
 }

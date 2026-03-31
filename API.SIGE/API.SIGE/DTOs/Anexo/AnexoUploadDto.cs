@@ -1,4 +1,4 @@
-using API.SIGE.Models;
+using API.SIGE.Model;
 using Microsoft.AspNetCore.Http;
 
 namespace API.SIGE.DTOs;

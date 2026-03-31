@@ -1,7 +1,7 @@
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
-using API.SIGE.Models;
+using API.SIGE.Model;
 using Microsoft.AspNetCore.Hosting;
 
 namespace API.SIGE.Services;

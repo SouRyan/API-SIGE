@@ -1,5 +1,5 @@
 using System.ComponentModel.DataAnnotations;
-using API.SIGE.Models;
+using API.SIGE.Model;
 
 namespace API.SIGE.DTOs;
 

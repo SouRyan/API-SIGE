@@ -1,9 +1,8 @@
-using SIGE.API.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace API.SIGE.Models
+namespace API.SIGE.Model
 {
     [Table ("Caixilho")]
     public class Caixilho

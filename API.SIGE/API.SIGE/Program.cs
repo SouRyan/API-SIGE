@@ -15,7 +15,6 @@ builder.Services.AddScoped<IFamiliaCaixilhoRepository, FamiliaCaixilhoRepository
 builder.Services.AddScoped<IObraRepository, ObraRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<ICargoRepository, CargoRepository>();
-builder.Services.AddScoped<IUsuarioCargoRepository, UsuarioCargoRepository>();
 builder.Services.AddScoped<IMedicaoRepository, MedicaoRepository>();
 builder.Services.AddScoped<IProducaoFamiliaRepository, ProducaoFamiliaRepository>();
 builder.Services.AddScoped<IAnexoRepository, AnexoRepository>();

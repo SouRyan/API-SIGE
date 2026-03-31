@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using SIGE.API.Models;
 
-namespace API.SIGE.Models;
+namespace API.SIGE.Model;
 
 [Table("Notificacao")]
 public class Notificacao

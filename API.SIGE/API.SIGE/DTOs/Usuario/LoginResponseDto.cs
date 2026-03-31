@@ -8,6 +8,7 @@ namespace API.SIGE.DTOs
         public string? Email { get; set; }
         public int? TipoUsuario { get; set; }
         public string? Message { get; set; }
-        public List<string>? Cargos { get; set; }
+        /// <summary>Descrição do cargo do usuário, se houver.</summary>
+        public string? Cargo { get; set; }
     }
 }

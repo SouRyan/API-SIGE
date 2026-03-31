@@ -1,4 +1,4 @@
-namespace API.SIGE.Models
+namespace API.SIGE.Model
 {
     public class ErrorViewModel
     {

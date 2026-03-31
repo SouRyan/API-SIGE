@@ -1,8 +1,7 @@
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
-using API.SIGE.Models;
-using SIGE.API.Models;
+using API.SIGE.Model;
 
 namespace API.SIGE.Services;
 
@@ -64,7 +63,7 @@ public class CaixilhoService : ICaixilhoService
             ?? throw new InvalidOperationException("Família não encontrada.");
         if (familia.IdObra != dto.ObraId)
             throw new InvalidOperationException("O caixilho deve pertencer à mesma obra da família.");
-            
+
         existente.NomeCaixilho = dto.NomeCaixilho;
         existente.Largura = dto.Largura;
         existente.Altura = dto.Altura;

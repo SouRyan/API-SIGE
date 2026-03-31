@@ -1,6 +1,6 @@
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Services;
-using API.SIGE.Models;
+using API.SIGE.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.SIGE.Controllers;
@@ -107,12 +107,12 @@ public class UsuarioApiController : ControllerBase
         }
     }
 
-    [HttpDelete("{id:int}/cargo/{idCargo:int}")]
-    public async Task<ActionResult> RemoverCargo(int id, int idCargo)
+    [HttpDelete("{id:int}/cargo")]
+    public async Task<ActionResult> RemoverCargo(int id)
     {
         try
         {
-            await _usuarioService.RemoverCargoAsync(id, idCargo);
+            await _usuarioService.RemoverCargoAsync(id);
             return NoContent();
         }
         catch (InvalidOperationException ex)
