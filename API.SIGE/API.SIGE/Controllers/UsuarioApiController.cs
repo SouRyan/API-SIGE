@@ -42,7 +42,7 @@ public class UsuarioApiController : ControllerBase
         return Ok(usuario);
     }
 
-    [AllowAnonymous]
+    //[AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult<LoginResponseDto>> Login([FromBody] LoginRequestDto request)
     {
