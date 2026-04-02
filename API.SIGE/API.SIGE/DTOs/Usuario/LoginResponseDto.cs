@@ -10,5 +10,7 @@ namespace API.SIGE.DTOs
         public string? Message { get; set; }
         /// <summary>Descrição do cargo do usuário, se houver.</summary>
         public string? Cargo { get; set; }
+
+        public string? Token { get; set; }
     }
 }

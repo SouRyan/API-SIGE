@@ -1,10 +1,12 @@
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.SIGE.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/usuario")]
 public class UsuarioApiController : ControllerBase
@@ -40,6 +42,7 @@ public class UsuarioApiController : ControllerBase
         return Ok(usuario);
     }
 
+    [AllowAnonymous]
     [HttpPost("login")]
     public async Task<ActionResult<LoginResponseDto>> Login([FromBody] LoginRequestDto request)
     {

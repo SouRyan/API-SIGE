@@ -1,8 +1,10 @@
 using API.SIGE.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.SIGE.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/notificacao")]
 public class NotificacaoApiController : ControllerBase

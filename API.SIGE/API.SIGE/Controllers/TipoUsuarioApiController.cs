@@ -1,9 +1,11 @@
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.SIGE.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/tipo-usuario")]
 public class TipoUsuarioApiController : ControllerBase

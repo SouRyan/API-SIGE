@@ -1,7 +1,11 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using API.SIGE.DTOs;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
+using Microsoft.IdentityModel.Tokens;
 
 namespace API.SIGE.Services;
 
@@ -9,13 +13,16 @@ public class UsuarioService : IUsuarioService
 {
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly ICargoRepository _cargoRepository;
+    private readonly IConfiguration _configuration;
 
     public UsuarioService(
         IUsuarioRepository usuarioRepository,
-        ICargoRepository cargoRepository)
+        ICargoRepository cargoRepository,
+        IConfiguration configuration)
     {
         _usuarioRepository = usuarioRepository;
         _cargoRepository = cargoRepository;
+        _configuration = configuration;
     }
 
     public async Task<List<UsuarioResponseDto>> GetAllAsync()
@@ -103,6 +110,8 @@ public class UsuarioService : IUsuarioService
             };
         }
 
+        var token = GerarToken(usuario);
+
         return new LoginResponseDto
         {
             Success = true,
@@ -110,8 +119,36 @@ public class UsuarioService : IUsuarioService
             NomeUsuario = usuario.NomeUsuario,
             Email = usuario.Email,
             TipoUsuario = usuario.IdTipoUsuario,
-            Cargo = usuario.Cargo?.DescricaoCargo
+            Cargo = usuario.Cargo?.DescricaoCargo,
+            Token = token
         };
+    }
+
+    private string GerarToken(Usuario usuario)
+    {
+        var key = new SymmetricSecurityKey(
+            Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        var claims = new List<Claim>
+        {
+            new(ClaimTypes.NameIdentifier, usuario.IdUsuario.ToString()),
+            new(ClaimTypes.Name, usuario.NomeUsuario),
+            new(ClaimTypes.Email, usuario.Email),
+            new("tipoUsuario", usuario.IdTipoUsuario.ToString())
+        };
+
+        if (usuario.Cargo != null)
+            claims.Add(new Claim(ClaimTypes.Role, usuario.Cargo.DescricaoCargo));
+
+        var token = new JwtSecurityToken(
+            issuer: _configuration["Jwt:Issuer"],
+            audience: _configuration["Jwt:Audience"],
+            claims: claims,
+            expires: DateTime.UtcNow.AddHours(8),
+            signingCredentials: credentials);
+
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
     public async Task AtribuirCargoAsync(int idUsuario, int idCargo)
