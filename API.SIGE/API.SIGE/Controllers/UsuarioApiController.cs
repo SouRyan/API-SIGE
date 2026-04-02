@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.SIGE.Controllers;
 
-[Authorize]
+
 [ApiController]
 [Route("api/usuario")]
 public class UsuarioApiController : ControllerBase
@@ -17,7 +17,7 @@ public class UsuarioApiController : ControllerBase
     {
         _usuarioService = usuarioService;
     }
-
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<List<UsuarioResponseDto>>> GetAll([FromQuery] bool ativos = true)
     {
@@ -26,7 +26,7 @@ public class UsuarioApiController : ControllerBase
             : await _usuarioService.GetAllAsync();
         return Ok(usuarios);
     }
-
+    [Authorize]
     [HttpGet("inativos")]
     public async Task<ActionResult<List<UsuarioResponseDto>>> GetInativos()
     {
@@ -54,7 +54,7 @@ public class UsuarioApiController : ControllerBase
 
         return Ok(result);
     }
-
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<UsuarioResponseDto>> Create([FromBody] UsuarioCreateDto dto)
     {
@@ -63,7 +63,7 @@ public class UsuarioApiController : ControllerBase
         var usuario = await _usuarioService.CreateAsync(dto);
         return CreatedAtAction(nameof(GetById), new { id = usuario.IdUsuario }, usuario);
     }
-
+    [Authorize]
     [HttpPut("{id:int}")]
     public async Task<ActionResult> Update(int id, [FromBody] UsuarioUpdateDto dto)
     {
@@ -75,7 +75,7 @@ public class UsuarioApiController : ControllerBase
         await _usuarioService.UpdateAsync(id, dto);
         return NoContent();
     }
-
+    [Authorize]
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> Inativar(int id)
     {
@@ -85,7 +85,7 @@ public class UsuarioApiController : ControllerBase
         await _usuarioService.InativarAsync(id);
         return NoContent();
     }
-
+    [Authorize]
     [HttpPost("{id:int}/ativar")]
     public async Task<ActionResult> Ativar(int id)
     {
@@ -95,7 +95,7 @@ public class UsuarioApiController : ControllerBase
         await _usuarioService.AtivarAsync(id);
         return Ok(new { success = true });
     }
-
+    [Authorize]
     [HttpPost("{id:int}/cargo/{idCargo:int}")]
     public async Task<ActionResult> AtribuirCargo(int id, int idCargo)
     {
@@ -109,7 +109,7 @@ public class UsuarioApiController : ControllerBase
             return BadRequest(new { message = ex.Message });
         }
     }
-
+    [Authorize]
     [HttpDelete("{id:int}/cargo")]
     public async Task<ActionResult> RemoverCargo(int id)
     {
@@ -123,7 +123,7 @@ public class UsuarioApiController : ControllerBase
             return BadRequest(new { message = ex.Message });
         }
     }
-
+    [Authorize]
     [HttpGet("cargo/{tipoCargo}")]
     public async Task<ActionResult<List<UsuarioResponseDto>>> GetByCargo(TipoCargo tipoCargo)
     {
