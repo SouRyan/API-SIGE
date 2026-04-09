@@ -33,44 +33,29 @@ public class ObraRepository : IObraRepository
     public async Task<List<Obra>> GetAllAsync() =>
         await _context.Obras
             .Include(o => o.Usuario)
-            .Include(o => o.ResponsavelVerificacao)
-            .Include(o => o.ResponsavelMedicao)
-            .Include(o => o.ResponsavelProducao)
             .ToListAsync();
 
     public async Task<List<Obra>> GetAllFinalizadosAsync() =>
         await _context.Obras
             .Where(o => o.Finalizado)
             .Include(o => o.Usuario)
-            .Include(o => o.ResponsavelVerificacao)
-            .Include(o => o.ResponsavelMedicao)
-            .Include(o => o.ResponsavelProducao)
             .ToListAsync();
 
     public async Task<List<Obra>> GetAllNaoFinalizadosAsync() =>
         await _context.Obras
             .Where(o => o.Finalizado == false)
             .Include(o => o.Usuario)
-            .Include(o => o.ResponsavelVerificacao)
-            .Include(o => o.ResponsavelMedicao)
-            .Include(o => o.ResponsavelProducao)
             .ToListAsync();
 
     public async Task<List<Obra>> GetByStatusAsync(StatusObra status) =>
         await _context.Obras
             .Where(o => o.StatusObra == status)
             .Include(o => o.Usuario)
-            .Include(o => o.ResponsavelVerificacao)
-            .Include(o => o.ResponsavelMedicao)
-            .Include(o => o.ResponsavelProducao)
             .ToListAsync();
 
     public async Task<Obra?> GetById(int id) =>
         await _context.Obras
             .Include(o => o.Usuario)
-            .Include(o => o.ResponsavelVerificacao)
-            .Include(o => o.ResponsavelMedicao)
-            .Include(o => o.ResponsavelProducao)
             .FirstOrDefaultAsync(o => o.IdObra == id);
 
     public async Task UpdateAsync(Obra obra)

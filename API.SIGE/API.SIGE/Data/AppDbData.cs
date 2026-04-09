@@ -42,21 +42,6 @@ public class AppDbData : DbContext
                 .WithMany()
                 .HasForeignKey(o => o.IdUsuario)
                 .OnDelete(DeleteBehavior.Cascade);
-
-            entity.HasOne(o => o.ResponsavelVerificacao)
-                .WithMany()
-                .HasForeignKey(o => o.IdResponsavelVerificacao)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            entity.HasOne(o => o.ResponsavelMedicao)
-                .WithMany()
-                .HasForeignKey(o => o.IdResponsavelMedicao)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            entity.HasOne(o => o.ResponsavelProducao)
-                .WithMany()
-                .HasForeignKey(o => o.IdResponsavelProducao)
-                .OnDelete(DeleteBehavior.SetNull);
         });
 
         modelBuilder.Entity<FamiliaCaixilho>(entity =>

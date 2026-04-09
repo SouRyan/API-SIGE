@@ -29,11 +29,5 @@ namespace API.SIGE.DTOs
         public float PercentualMedicao { get; set; }
         public float PercentualProducao { get; set; }
 
-        public int? IdResponsavelVerificacao { get; set; }
-        public string? NomeResponsavelVerificacao { get; set; }
-        public int? IdResponsavelMedicao { get; set; }
-        public string? NomeResponsavelMedicao { get; set; }
-        public int? IdResponsavelProducao { get; set; }
-        public string? NomeResponsavelProducao { get; set; }
     }
 }

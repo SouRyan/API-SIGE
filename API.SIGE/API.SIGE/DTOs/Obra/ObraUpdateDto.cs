@@ -56,8 +56,5 @@ namespace API.SIGE.DTOs
         [Required(ErrorMessage = "Campo Obrigatório")]
         public int IdUsuario { get; set; }
 
-        public int? IdResponsavelVerificacao { get; set; }
-        public int? IdResponsavelMedicao { get; set; }
-        public int? IdResponsavelProducao { get; set; }
     }
 }

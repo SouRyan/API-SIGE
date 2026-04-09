@@ -63,10 +63,7 @@ public class ObraService : IObraService
             IdUsuario = dto.IdUsuario,
             StatusObra = StatusObra.Cadastrada,
             PercentualMedicao = 0,
-            PercentualProducao = 0,
-            IdResponsavelVerificacao = dto.IdResponsavelVerificacao,
-            IdResponsavelMedicao = dto.IdResponsavelMedicao,
-            IdResponsavelProducao = dto.IdResponsavelProducao
+            PercentualProducao = 0
         };
         await _obraRepository.AddAsync(obra);
         var created = await _obraRepository.GetById(obra.IdObra);
@@ -93,9 +90,6 @@ public class ObraService : IObraService
         obra.Finalizado = dto.Finalizado;
         obra.ImagemObraPath = dto.ImagemObraPath;
         obra.IdUsuario = dto.IdUsuario;
-        obra.IdResponsavelVerificacao = dto.IdResponsavelVerificacao;
-        obra.IdResponsavelMedicao = dto.IdResponsavelMedicao;
-        obra.IdResponsavelProducao = dto.IdResponsavelProducao;
 
         await _obraRepository.UpdateAsync(obra);
     }
@@ -120,16 +114,6 @@ public class ObraService : IObraService
 
         obra.StatusObra = StatusObra.Verificada;
         await _obraRepository.UpdateAsync(obra);
-
-        if (obra.IdResponsavelMedicao != null)
-        {
-            await _notificacaoService.CriarAsync(
-                obra.IdResponsavelMedicao.Value,
-                "Obra verificada",
-                $"A obra {obra.Nome} foi verificada e está pronta para medição.",
-                TipoNotificacao.ObraVerificada,
-                obra.IdObra);
-        }
     }
 
     public async Task ConcluirAsync(int id)
@@ -206,12 +190,6 @@ public class ObraService : IObraService
         NomeUsuario = o.Usuario?.NomeUsuario,
         StatusObra = o.StatusObra,
         PercentualMedicao = o.PercentualMedicao,
-        PercentualProducao = o.PercentualProducao,
-        IdResponsavelVerificacao = o.IdResponsavelVerificacao,
-        NomeResponsavelVerificacao = o.ResponsavelVerificacao?.NomeUsuario,
-        IdResponsavelMedicao = o.IdResponsavelMedicao,
-        NomeResponsavelMedicao = o.ResponsavelMedicao?.NomeUsuario,
-        IdResponsavelProducao = o.IdResponsavelProducao,
-        NomeResponsavelProducao = o.ResponsavelProducao?.NomeUsuario
+        PercentualProducao = o.PercentualProducao
     };
 }

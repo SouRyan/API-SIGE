@@ -11,20 +11,17 @@ public class MedicaoService : IMedicaoService
     private readonly IFamiliaCaixilhoRepository _familiaRepository;
     private readonly IObraRepository _obraRepository;
     private readonly IObraService _obraService;
-    private readonly INotificacaoService _notificacaoService;
 
     public MedicaoService(
         IMedicaoRepository medicaoRepository,
         IFamiliaCaixilhoRepository familiaRepository,
         IObraRepository obraRepository,
-        IObraService obraService,
-        INotificacaoService notificacaoService)
+        IObraService obraService)
     {
         _medicaoRepository = medicaoRepository;
         _familiaRepository = familiaRepository;
         _obraRepository = obraRepository;
         _obraService = obraService;
-        _notificacaoService = notificacaoService;
     }
 
     public async Task<MedicaoResponseDto?> GetByFamiliaIdAsync(int familiaId)
@@ -114,17 +111,6 @@ public class MedicaoService : IMedicaoService
         await _familiaRepository.UpdateAsync(familia);
 
         await _obraService.RecalcularProgressoAsync(familia.IdObra);
-
-        var obra = await _obraRepository.GetById(familia.IdObra);
-        if (obra?.IdResponsavelProducao != null)
-        {
-            await _notificacaoService.CriarAsync(
-                obra.IdResponsavelProducao.Value,
-                "Família medida",
-                $"A família {familia.DescricaoFamilia} foi medida.",
-                TipoNotificacao.FamiliaMedida,
-                obra.IdObra);
-        }
 
         var final = await _medicaoRepository.GetByIdAsync(medicao.IdMedicao);
         return Map(final!);

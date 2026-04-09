@@ -1,14 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\",
+  "WorkspaceRootPath": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\controllers\\usuarioapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\usuarioapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ryan.bfsouza\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\controllers\\caixilhoapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\caixilhoapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,20 +30,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 10,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
-              "RelativeDocumentMoniker": "API.SIGE\\Program.cs",
-              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs*",
-              "RelativeToolTip": "API.SIGE\\Program.cs*",
-              "ViewState": "AgIAADoAAAAAAAAAAAAiwE0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T00:48:43.172Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Bookmark",
@@ -48,24 +51,72 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
-          "Children": [
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Program.cs",
+              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
+              "RelativeToolTip": "API.SIGE\\Program.cs",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T14:27:07.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\appsettings.json",
+              "RelativeDocumentMoniker": "API.SIGE\\appsettings.json",
+              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\appsettings.json",
+              "RelativeToolTip": "API.SIGE\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-24T14:12:05.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppDbData.cs",
+              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Data\\AppDbData.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Data\\AppDbData.cs",
+              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Data\\AppDbData.cs",
+              "RelativeToolTip": "API.SIGE\\Data\\AppDbData.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T13:59:49.508Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CaixilhoApiController.cs",
+              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\CaixilhoApiController.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Controllers\\CaixilhoApiController.cs",
+              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\CaixilhoApiController.cs",
+              "RelativeToolTip": "API.SIGE\\Controllers\\CaixilhoApiController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowE8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T13:59:15.571Z"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\appsettings.json",
-              "RelativeDocumentMoniker": "API.SIGE\\appsettings.json",
-              "ToolTip": "C:\\Users\\ryan.bfsouza\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\appsettings.json",
-              "RelativeToolTip": "API.SIGE\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-02T00:47:46.16Z",
+              "Title": "UsuarioApiController.cs",
+              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\UsuarioApiController.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Controllers\\UsuarioApiController.cs",
+              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\UsuarioApiController.cs",
+              "RelativeToolTip": "API.SIGE\\Controllers\\UsuarioApiController.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAuwHcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T13:28:08.048Z",
               "EditorCaption": ""
             }
           ]

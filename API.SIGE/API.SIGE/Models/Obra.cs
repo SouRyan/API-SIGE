@@ -68,17 +68,6 @@ namespace API.SIGE.Model
 
         public float PercentualProducao { get; set; }
 
-        public int? IdResponsavelVerificacao { get; set; }
-        public int? IdResponsavelMedicao { get; set; }
-        public int? IdResponsavelProducao { get; set; }
-
-        [JsonIgnore]
-        public virtual Usuario? ResponsavelVerificacao { get; set; }
-        [JsonIgnore]
-        public virtual Usuario? ResponsavelMedicao { get; set; }
-        [JsonIgnore]
-        public virtual Usuario? ResponsavelProducao { get; set; }
-
         public virtual ICollection<FamiliaCaixilho>? FamiliasCaixilho { get; set; }
 
         public DateTime? DataConclusao { get; set; }
