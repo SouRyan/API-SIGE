@@ -17,7 +17,7 @@ namespace API.SIGE.DTOs
         public string? Senha { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatório")]
-        [StringLength(14)]
+        [StringLength(11)]
         public string Telefone { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Campo Obrigatório")]

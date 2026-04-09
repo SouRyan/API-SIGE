@@ -19,7 +19,7 @@ namespace API.SIGE.Model
         [StringLength(6)]
         public string Senha { get; set; }
         [Required(ErrorMessage = "Campo Obrigatório")]
-        [StringLength(14)]
+        [StringLength(11)]
         public string Telefone { get; set; }
 
         [Required(ErrorMessage = "Campo Obrigatório")]
