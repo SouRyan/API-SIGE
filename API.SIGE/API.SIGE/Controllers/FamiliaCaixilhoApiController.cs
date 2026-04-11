@@ -48,6 +48,40 @@ public class FamiliaCaixilhoApiController : ControllerBase
         return CreatedAtAction(nameof(GetById), new { id = familia.IdFamiliaCaixilho }, familia);
     }
 
+    [HttpPost("{id:int}/liberar")]
+    public Task<ActionResult> LiberarParaProducaoCurto(int id) => LiberarParaProducao(id);
+
+    [HttpPost("{id:int}/liberar-para-producao")]
+    public async Task<ActionResult> LiberarParaProducao(int id)
+    {
+        try
+        {
+            await _familiaService.LiberarParaProducaoAsync(id);
+            return NoContent();
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    [HttpPost("{id:int}/finalizar")]
+    public Task<ActionResult> FinalizarProducaoCurto(int id) => FinalizarProducao(id);
+
+    [HttpPost("{id:int}/finalizar-producao")]
+    public async Task<ActionResult> FinalizarProducao(int id)
+    {
+        try
+        {
+            await _familiaService.FinalizarProducaoAsync(id);
+            return NoContent();
+        }
+        catch (InvalidOperationException ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
     [HttpPut("{id:int}")]
     public async Task<ActionResult> Update(int id, [FromBody] FamiliaCaixilhoUpdateDto dto)
     {

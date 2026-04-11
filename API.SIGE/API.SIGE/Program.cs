@@ -5,11 +5,28 @@ using API.SIGE.Interfaces.Services;
 using API.SIGE.Repositories;
 using API.SIGE.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Render / reverse proxy: HTTPS e IP reais vêm em X-Forwarded-*
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownIPNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+    });
+});
 
 var connectionString = builder.Configuration.GetConnectionString("WebApiDatabase");
 
@@ -78,6 +95,7 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+app.UseForwardedHeaders();
 app.UseCors();
 
 app.UseSwagger();
@@ -87,6 +105,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapGet("/health", () => Results.Ok(new { status = "ok", ts = DateTime.UtcNow }))
+    .AllowAnonymous();
 
 app.MapControllers();
 

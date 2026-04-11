@@ -56,6 +56,12 @@ public class CaixilhoRepository : ICaixilhoRepository
     public async Task<int> CountByFamiliaIdAsync(int familiaId) =>
         await _context.Caixilhos.CountAsync(c => c.IdFamiliaCaixilho == familiaId);
 
+    public async Task<List<Caixilho>> GetListByFamiliaIdAsync(int familiaId) =>
+        await _context.Caixilhos
+            .Where(c => c.IdFamiliaCaixilho == familiaId)
+            .AsNoTracking()
+            .ToListAsync();
+
     public async Task UpdateAsync(Caixilho caixilho)
     {
         var caixilhoOriginal = await _context.Caixilhos.AsNoTracking()

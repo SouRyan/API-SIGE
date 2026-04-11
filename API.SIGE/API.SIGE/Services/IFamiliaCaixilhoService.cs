@@ -11,4 +11,6 @@ public interface IFamiliaCaixilhoService
     Task UpdateAsync(int id, FamiliaCaixilhoUpdateDto dto);
     Task DeleteAsync(int id);
     Task<int> RecalcularPesosAsync();
+    Task LiberarParaProducaoAsync(int id);
+    Task FinalizarProducaoAsync(int id);
 }

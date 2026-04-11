@@ -73,10 +73,38 @@ public class FamiliaCaixilhoService : IFamiliaCaixilhoService
         var familia = await _familiaRepository.GetByIdAsync(id)
             ?? throw new InvalidOperationException("Família não encontrada.");
         familia.DescricaoFamilia = dto.DescricaoFamilia;
+        if (dto.StatusFamilia.HasValue && Enum.IsDefined(typeof(StatusFamilia), dto.StatusFamilia.Value))
+            familia.StatusFamilia = (StatusFamilia)dto.StatusFamilia.Value;
         await _familiaRepository.UpdateAsync(familia);
     }
 
     public async Task DeleteAsync(int id) => await _familiaRepository.DeleteAsync(id);
+
+    public async Task LiberarParaProducaoAsync(int id)
+    {
+        var familia = await _familiaRepository.GetByIdAsync(id)
+            ?? throw new InvalidOperationException("Família não encontrada.");
+        if (familia.StatusFamilia is StatusFamilia.EmProducao or StatusFamilia.Produzida)
+            throw new InvalidOperationException("Família já está liberada ou com produção finalizada.");
+
+        var caixilhos = await _caixilhoRepository.GetListByFamiliaIdAsync(id);
+        if (caixilhos.Count == 0 || !caixilhos.All(c => c.StatusProducao == StatusProducao.Medido))
+            throw new InvalidOperationException("Todos os caixilhos devem estar medidos para liberar a produção.");
+
+        familia.StatusFamilia = StatusFamilia.EmProducao;
+        await _familiaRepository.UpdateAsync(familia);
+    }
+
+    public async Task FinalizarProducaoAsync(int id)
+    {
+        var familia = await _familiaRepository.GetByIdAsync(id)
+            ?? throw new InvalidOperationException("Família não encontrada.");
+        if (familia.StatusFamilia != StatusFamilia.EmProducao)
+            throw new InvalidOperationException("Só é possível finalizar quando a família está liberada e em produção.");
+
+        familia.StatusFamilia = StatusFamilia.Produzida;
+        await _familiaRepository.UpdateAsync(familia);
+    }
 
     public async Task<int> RecalcularPesosAsync()
     {

@@ -11,5 +11,6 @@ namespace API.SIGE.Interfaces.Repositories
         Task UpdateAsync(Caixilho caixilho);
         Task DeleteAsync(int id);
         Task<int> CountByFamiliaIdAsync(int familiaId);
+        Task<List<Caixilho>> GetListByFamiliaIdAsync(int familiaId);
     }
 }
