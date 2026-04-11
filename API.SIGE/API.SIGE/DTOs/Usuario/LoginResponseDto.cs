@@ -7,6 +7,8 @@ namespace API.SIGE.DTOs
         public string? NomeUsuario { get; set; }
         public string? Email { get; set; }
         public int? TipoUsuario { get; set; }
+        /// <summary>Nome do TipoUsuario (Administrador, Operador, Vizualizador, ...). Usado para mapear roles no website.</summary>
+        public string? NomeTipoUsuario { get; set; }
         public string? Message { get; set; }
         /// <summary>Descrição do cargo do usuário, se houver.</summary>
         public string? Cargo { get; set; }

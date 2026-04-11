@@ -119,6 +119,7 @@ public class UsuarioService : IUsuarioService
             NomeUsuario = usuario.NomeUsuario,
             Email = usuario.Email,
             TipoUsuario = usuario.IdTipoUsuario,
+            NomeTipoUsuario = usuario.TipoUsuario?.NomeTipoUsuario,
             Cargo = usuario.Cargo?.DescricaoCargo,
             Token = token
         };
