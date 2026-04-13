@@ -8,4 +8,5 @@ public interface IAnexoService
     Task<List<AnexoResponseDto>> GetByMedicaoIdAsync(int medicaoId);
     Task<List<AnexoResponseDto>> GetByProducaoFamiliaIdAsync(int producaoFamiliaId);
     Task DeleteAsync(int id);
+    Task<(Stream stream, string contentType, string fileName)?> DownloadAsync(int id);
 }

@@ -44,6 +44,17 @@ public class AnexoApiController : ControllerBase
         return Ok(await _anexoService.GetByProducaoFamiliaIdAsync(producaoId));
     }
 
+    [HttpGet("{id:int}/download")]
+    public async Task<ActionResult> Download(int id)
+    {
+        var result = await _anexoService.DownloadAsync(id);
+        if (result == null)
+            return NotFound();
+
+        var (stream, contentType, fileName) = result.Value;
+        return File(stream, contentType, fileName);
+    }
+
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> Delete(int id)
     {

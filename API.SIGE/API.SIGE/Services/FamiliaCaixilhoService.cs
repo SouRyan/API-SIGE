@@ -12,15 +12,18 @@ public class FamiliaCaixilhoService : IFamiliaCaixilhoService
     private readonly IFamiliaCaixilhoRepository _familiaRepository;
     private readonly IObraRepository _obraRepository;
     private readonly ICaixilhoRepository _caixilhoRepository;
+    private readonly IObraService _obraService;
 
     public FamiliaCaixilhoService(
         IFamiliaCaixilhoRepository familiaRepository,
         IObraRepository obraRepository,
-        ICaixilhoRepository caixilhoRepository)
+        ICaixilhoRepository caixilhoRepository,
+        IObraService obraService)
     {
         _familiaRepository = familiaRepository;
         _obraRepository = obraRepository;
         _caixilhoRepository = caixilhoRepository;
+        _obraService = obraService;
     }
 
     public async Task<List<FamiliaCaixilhoResponseDto>> GetAllAsync()
@@ -104,6 +107,8 @@ public class FamiliaCaixilhoService : IFamiliaCaixilhoService
 
         familia.StatusFamilia = StatusFamilia.Produzida;
         await _familiaRepository.UpdateAsync(familia);
+
+        await _obraService.RecalcularProgressoAsync(familia.IdObra);
     }
 
     public async Task<int> RecalcularPesosAsync()

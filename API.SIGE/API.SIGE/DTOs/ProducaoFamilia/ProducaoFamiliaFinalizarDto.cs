@@ -6,4 +6,6 @@ public class ProducaoFamiliaFinalizarDto
 {
     [StringLength(500)]
     public string? Observacoes { get; set; }
+
+    public DateTime? DataConclusao { get; set; }
 }

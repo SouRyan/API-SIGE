@@ -66,6 +66,21 @@ public class ObraService : IObraService
             PercentualProducao = 0
         };
         await _obraRepository.AddAsync(obra);
+
+        // Notificar medidores e produtores sobre nova obra
+        var medidores = await _usuarioRepository.GetByCargoAsync(TipoCargo.ResponsavelMedicao);
+        var produtores = await _usuarioRepository.GetByCargoAsync(TipoCargo.ResponsavelProducao);
+        var destinatarios = medidores.Concat(produtores).DistinctBy(u => u.IdUsuario);
+        foreach (var u in destinatarios)
+        {
+            await _notificacaoService.CriarAsync(
+                u.IdUsuario,
+                "Nova obra cadastrada",
+                $"A obra \"{obra.Nome}\" foi cadastrada no sistema. Fique atento para novas atividades.",
+                TipoNotificacao.ObraCriada,
+                obra.IdObra);
+        }
+
         var created = await _obraRepository.GetById(obra.IdObra);
         return Map(created!);
     }
@@ -114,6 +129,18 @@ public class ObraService : IObraService
 
         obra.StatusObra = StatusObra.Verificada;
         await _obraRepository.UpdateAsync(obra);
+
+        // Notificar responsáveis pela medição que há famílias disponíveis
+        var medidores = await _usuarioRepository.GetByCargoAsync(TipoCargo.ResponsavelMedicao);
+        foreach (var u in medidores)
+        {
+            await _notificacaoService.CriarAsync(
+                u.IdUsuario,
+                "Famílias disponíveis para medição",
+                $"A obra \"{obra.Nome}\" foi verificada. As famílias estão disponíveis para medição e envio de fotos.",
+                TipoNotificacao.FamiliaParaMedir,
+                obra.IdObra);
+        }
     }
 
     public async Task ConcluirAsync(int id)

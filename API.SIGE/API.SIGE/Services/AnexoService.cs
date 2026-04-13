@@ -90,6 +90,16 @@ public class AnexoService : IAnexoService
         await _anexoRepository.DeleteAsync(id);
     }
 
+    public async Task<(Stream stream, string contentType, string fileName)?> DownloadAsync(int id)
+    {
+        var anexo = await _anexoRepository.GetByIdAsync(id);
+        if (anexo == null || !File.Exists(anexo.CaminhoArquivo))
+            return null;
+
+        var stream = File.OpenRead(anexo.CaminhoArquivo);
+        return (stream, anexo.TipoArquivo, anexo.NomeArquivo);
+    }
+
     private static AnexoResponseDto Map(Anexo a) => new()
     {
         IdAnexo = a.IdAnexo,

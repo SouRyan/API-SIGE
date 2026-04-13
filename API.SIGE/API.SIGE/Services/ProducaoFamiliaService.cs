@@ -75,6 +75,18 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
             await _obraRepository.UpdateAsync(obra);
         }
 
+        // Notificar gerentes sobre início de produção
+        var gerentes = await _usuarioRepository.GetByCargoAsync(TipoCargo.Gerente);
+        foreach (var g in gerentes)
+        {
+            await _notificacaoService.CriarAsync(
+                g.IdUsuario,
+                "Produção iniciada",
+                $"A produção da família \"{familia.DescricaoFamilia}\" foi iniciada na obra \"{obra?.Nome}\".",
+                TipoNotificacao.ProducaoIniciada,
+                familia.IdObra);
+        }
+
         var loaded = await _producaoRepository.GetByIdAsync(producao.IdProducaoFamilia);
         return Map(loaded!);
     }
@@ -108,7 +120,7 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
             throw new InvalidOperationException("Produção não pode ser finalizada neste estado.");
 
         producao.Status = StatusAtividade.Concluida;
-        producao.DataConclusao = DateTime.UtcNow;
+        producao.DataConclusao = dto.DataConclusao ?? DateTime.UtcNow;
         if (dto.Observacoes != null)
             producao.Observacoes = dto.Observacoes;
         await _producaoRepository.UpdateAsync(producao);
@@ -118,17 +130,29 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
 
         await _obraService.RecalcularProgressoAsync(familia.IdObra);
 
+        // Notificar gerentes sobre família finalizada
         var obra = await _obraRepository.GetById(familia.IdObra);
+        var gerentes = await _usuarioRepository.GetByCargoAsync(TipoCargo.Gerente);
+        foreach (var g in gerentes)
+        {
+            await _notificacaoService.CriarAsync(
+                g.IdUsuario,
+                "Produção finalizada",
+                $"A produção da família \"{familia.DescricaoFamilia}\" foi concluída na obra \"{obra?.Nome}\".",
+                TipoNotificacao.FamiliaProduzida,
+                familia.IdObra);
+        }
+
+        // Se atingiu 100%, notificação extra
         if (obra != null && obra.PercentualMedicao >= 99.99f && obra.PercentualProducao >= 99.99f)
         {
-            var gerentes = await _usuarioRepository.GetByCargoAsync(TipoCargo.Gerente);
             foreach (var g in gerentes)
             {
                 await _notificacaoService.CriarAsync(
                     g.IdUsuario,
-                    "Medição e produção concluídas",
-                    $"A obra {obra.Nome} atingiu 100% de medição e produção.",
-                    TipoNotificacao.FamiliaProduzida,
+                    "Obra 100% concluída",
+                    $"A obra \"{obra.Nome}\" atingiu 100% de medição e produção. Pode ser finalizada.",
+                    TipoNotificacao.ObraConcluida,
                     obra.IdObra);
             }
         }

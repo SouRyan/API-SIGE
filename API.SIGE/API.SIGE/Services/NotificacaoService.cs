@@ -8,16 +8,33 @@ namespace API.SIGE.Services;
 public class NotificacaoService : INotificacaoService
 {
     private readonly INotificacaoRepository _notificacaoRepository;
+    private readonly IUsuarioRepository _usuarioRepository;
 
-    public NotificacaoService(INotificacaoRepository notificacaoRepository)
+    public NotificacaoService(INotificacaoRepository notificacaoRepository, IUsuarioRepository usuarioRepository)
     {
         _notificacaoRepository = notificacaoRepository;
+        _usuarioRepository = usuarioRepository;
     }
 
     public async Task<List<NotificacaoResponseDto>> GetByUsuarioIdAsync(int idUsuario)
     {
         var lista = await _notificacaoRepository.GetByUsuarioIdAsync(idUsuario);
         return lista.Select(Map).ToList();
+    }
+
+    public async Task<int> GetNaoLidasCountAsync(int idUsuario)
+    {
+        var lista = await _notificacaoRepository.GetNaoLidasAsync(idUsuario);
+        return lista.Count;
+    }
+
+    public async Task BroadcastAsync(string titulo, string mensagem, TipoNotificacao tipo, int? idObra, TipoCargo tipoCargo)
+    {
+        var usuarios = await _usuarioRepository.GetByCargoAsync(tipoCargo);
+        foreach (var u in usuarios)
+        {
+            await CriarAsync(u.IdUsuario, titulo, mensagem, tipo, idObra);
+        }
     }
 
     public async Task MarcarLidaAsync(int idNotificacao)
