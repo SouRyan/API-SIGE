@@ -52,4 +52,25 @@ public class NotificacaoApiController : ControllerBase
             dto.Titulo, dto.Mensagem, dto.TipoNotificacao, dto.IdObra, dto.TipoCargo);
         return NoContent();
     }
+
+    [HttpDelete("{id:int}")]
+    public async Task<ActionResult> Apagar(int id)
+    {
+        try
+        {
+            await _notificacaoService.ApagarAsync(id);
+            return NoContent();
+        }
+        catch (InvalidOperationException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+    }
+
+    [HttpDelete("usuario/{idUsuario:int}/lidas")]
+    public async Task<ActionResult> ApagarLidas(int idUsuario)
+    {
+        var apagadas = await _notificacaoService.ApagarLidasAsync(idUsuario);
+        return Ok(new { apagadas });
+    }
 }

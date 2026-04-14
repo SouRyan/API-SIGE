@@ -45,6 +45,24 @@ public class NotificacaoService : INotificacaoService
         await _notificacaoRepository.UpdateAsync(n);
     }
 
+    public async Task ApagarAsync(int idNotificacao)
+    {
+        var n = await _notificacaoRepository.GetByIdAsync(idNotificacao)
+            ?? throw new InvalidOperationException("Notificação não encontrada.");
+        await _notificacaoRepository.DeleteAsync(n.IdNotificacao);
+    }
+
+    public async Task<int> ApagarLidasAsync(int idUsuario)
+    {
+        var lista = await _notificacaoRepository.GetByUsuarioIdAsync(idUsuario);
+        var lidas = lista.Where(n => n.Lida).ToList();
+        foreach (var n in lidas)
+        {
+            await _notificacaoRepository.DeleteAsync(n.IdNotificacao);
+        }
+        return lidas.Count;
+    }
+
     public async Task CriarAsync(int idDestino, string titulo, string mensagem, TipoNotificacao tipo, int? idObra)
     {
         var n = new Notificacao
