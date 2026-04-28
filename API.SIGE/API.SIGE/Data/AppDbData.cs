@@ -20,6 +20,7 @@ public class AppDbData : DbContext
     public DbSet<ProducaoFamilia> ProducoesFamilia => Set<ProducaoFamilia>();
     public DbSet<Anexo> Anexos => Set<Anexo>();
     public DbSet<Notificacao> Notificacoes => Set<Notificacao>();
+    public DbSet<SolicitacaoCliente> SolicitacoesCliente => Set<SolicitacaoCliente>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -117,6 +118,27 @@ public class AppDbData : DbContext
             entity.HasOne(n => n.Obra)
                 .WithMany()
                 .HasForeignKey(n => n.IdObra)
+                .OnDelete(DeleteBehavior.SetNull);
+        });
+
+        modelBuilder.Entity<SolicitacaoCliente>(entity =>
+        {
+            entity.HasOne(s => s.Caixilho)
+                .WithMany()
+                .HasForeignKey(s => s.IdCaixilho)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(s => s.Cliente)
+                .WithMany()
+                .HasForeignKey(s => s.IdCliente)
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<Obra>(entity =>
+        {
+            entity.HasOne(o => o.Cliente)
+                .WithMany()
+                .HasForeignKey(o => o.IdCliente)
                 .OnDelete(DeleteBehavior.SetNull);
         });
     }

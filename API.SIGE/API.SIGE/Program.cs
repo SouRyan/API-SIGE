@@ -1,5 +1,5 @@
-using System.Text;
 using API.SIGE.Data;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Repositories;
@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +41,7 @@ builder.Services.AddScoped<IMedicaoRepository, MedicaoRepository>();
 builder.Services.AddScoped<IProducaoFamiliaRepository, ProducaoFamiliaRepository>();
 builder.Services.AddScoped<IAnexoRepository, AnexoRepository>();
 builder.Services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
+builder.Services.AddScoped<ISolicitacaoClienteRepository, SolicitacaoClienteRepository>();
 
 builder.Services.AddDbContext<AppDbData>(options =>
     options.UseNpgsql(connectionString));
@@ -55,6 +57,7 @@ builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<ICaixilhoService, CaixilhoService>();
 builder.Services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
+builder.Services.AddScoped<ISolicitacaoClienteService, SolicitacaoClienteService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

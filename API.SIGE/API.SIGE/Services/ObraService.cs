@@ -63,7 +63,8 @@ public class ObraService : IObraService
             IdUsuario = dto.IdUsuario,
             StatusObra = StatusObra.Cadastrada,
             PercentualMedicao = 0,
-            PercentualProducao = 0
+            PercentualProducao = 0,
+            IdCliente = dto.IdCliente
         };
         await _obraRepository.AddAsync(obra);
 
@@ -105,6 +106,7 @@ public class ObraService : IObraService
         obra.Finalizado = dto.Finalizado;
         obra.ImagemObraPath = dto.ImagemObraPath;
         obra.IdUsuario = dto.IdUsuario;
+        obra.IdCliente = dto.IdCliente;
 
         await _obraRepository.UpdateAsync(obra);
     }
@@ -215,6 +217,7 @@ public class ObraService : IObraService
         ImagemObraPath = o.ImagemObraPath,
         IdUsuario = o.IdUsuario,
         NomeUsuario = o.Usuario?.NomeUsuario,
+        IdCliente = o.IdCliente,
         StatusObra = o.StatusObra,
         PercentualMedicao = o.PercentualMedicao,
         PercentualProducao = o.PercentualProducao

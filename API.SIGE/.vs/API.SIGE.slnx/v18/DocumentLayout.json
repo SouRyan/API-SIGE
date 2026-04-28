@@ -1,26 +1,78 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\",
+  "WorkspaceRootPath": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\controllers\\usuarioapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\usuarioapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\services\\obraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\services\\obraservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\dtos\\obra\\obraresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\dtos\\obra\\obraresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\controllers\\obraapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\obraapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\dtos\\obra\\obraupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\dtos\\obra\\obraupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\dtos\\obra\\obracreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\dtos\\obra\\obracreatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\services\\solicitacaoclienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\services\\solicitacaoclienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\controllers\\solicitacaoclienteapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\solicitacaoclienteapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\dtos\\solicitacaoclientedto.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\dtos\\solicitacaoclientedto.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\interfaces\\isolicitacaoclienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\interfaces\\isolicitacaoclienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\repositories\\solicitacaoclienterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\repositories\\solicitacaoclienterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\interfaces\\repositories\\isolicitacaoclienterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\interfaces\\repositories\\isolicitacaoclienterepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\controllers\\caixilhoapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\caixilhoapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\data\\appdbdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\ti\\source\\repos\\souryan\\api-sige\\api.sige\\api.sige\\controllers\\caixilhoapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\caixilhoapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\models\\solicitacaocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\models\\solicitacaocliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\models\\obra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\models\\obra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|c:\\users\\gamerpc\\source\\repos\\cliente\\api-sige\\api.sige\\api.sige\\controllers\\usuarioapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE8CCBA5-0116-838A-03DD-DC4568915829}|API.SIGE\\API.SIGE.csproj|solutionrelative:api.sige\\controllers\\usuarioapicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,11 +82,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 13,
           "Children": [
             {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ObraResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\DTOs\\Obra\\ObraResponseDto.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\DTOs\\Obra\\ObraResponseDto.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\DTOs\\Obra\\ObraResponseDto.cs",
+              "RelativeToolTip": "API.SIGE\\DTOs\\Obra\\ObraResponseDto.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAmwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T01:25:03.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ObraApiController.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\ObraApiController.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Controllers\\ObraApiController.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\ObraApiController.cs",
+              "RelativeToolTip": "API.SIGE\\Controllers\\ObraApiController.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAzwGIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T01:24:17.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ObraService.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Services\\ObraService.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Services\\ObraService.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Services\\ObraService.cs",
+              "RelativeToolTip": "API.SIGE\\Services\\ObraService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAANsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T23:38:44.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ObraUpdateDto.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\DTOs\\Obra\\ObraUpdateDto.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\DTOs\\Obra\\ObraUpdateDto.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\DTOs\\Obra\\ObraUpdateDto.cs",
+              "RelativeToolTip": "API.SIGE\\DTOs\\Obra\\ObraUpdateDto.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAwDwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T23:32:41.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ObraCreateDto.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\DTOs\\Obra\\ObraCreateDto.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\DTOs\\Obra\\ObraCreateDto.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\DTOs\\Obra\\ObraCreateDto.cs",
+              "RelativeToolTip": "API.SIGE\\DTOs\\Obra\\ObraCreateDto.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAcwDkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T23:29:05.027Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Bookmark",
@@ -58,64 +175,162 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
-              "RelativeDocumentMoniker": "API.SIGE\\Program.cs",
-              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
-              "RelativeToolTip": "API.SIGE\\Program.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAADQAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "SolicitacaoClienteApiController.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\SolicitacaoClienteApiController.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Controllers\\SolicitacaoClienteApiController.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\SolicitacaoClienteApiController.cs",
+              "RelativeToolTip": "API.SIGE\\Controllers\\SolicitacaoClienteApiController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T14:27:07.86Z"
+              "WhenOpened": "2026-04-27T03:43:43.143Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
+              "Title": "SolicitacaoClienteService.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Services\\SolicitacaoClienteService.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Services\\SolicitacaoClienteService.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Services\\SolicitacaoClienteService.cs",
+              "RelativeToolTip": "API.SIGE\\Services\\SolicitacaoClienteService.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAYwFkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T03:42:52.01Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Program.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Program.cs",
+              "RelativeToolTip": "API.SIGE\\Program.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAADgAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-24T14:27:07.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SolicitacaoClienteDto.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\DTOs\\SolicitacaoClienteDto.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\DTOs\\SolicitacaoClienteDto.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\DTOs\\SolicitacaoClienteDto.cs",
+              "RelativeToolTip": "API.SIGE\\DTOs\\SolicitacaoClienteDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T03:30:14.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\appsettings.json",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\appsettings.json",
               "RelativeDocumentMoniker": "API.SIGE\\appsettings.json",
-              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\appsettings.json",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\appsettings.json",
               "RelativeToolTip": "API.SIGE\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-03-24T14:12:05.809Z"
+              "WhenOpened": "2026-03-24T14:12:05.809Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 11,
+              "Title": "SolicitacaoClienteRepository.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Repositories\\SolicitacaoClienteRepository.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Repositories\\SolicitacaoClienteRepository.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Repositories\\SolicitacaoClienteRepository.cs",
+              "RelativeToolTip": "API.SIGE\\Repositories\\SolicitacaoClienteRepository.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAUwEcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T03:40:40.063Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ISolicitacaoClienteService.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Interfaces\\ISolicitacaoClienteService.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Interfaces\\ISolicitacaoClienteService.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Interfaces\\ISolicitacaoClienteService.cs",
+              "RelativeToolTip": "API.SIGE\\Interfaces\\ISolicitacaoClienteService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T03:38:07.453Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ISolicitacaoClienteRepository.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Interfaces\\Repositories\\ISolicitacaoClienteRepository.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Interfaces\\Repositories\\ISolicitacaoClienteRepository.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Interfaces\\Repositories\\ISolicitacaoClienteRepository.cs",
+              "RelativeToolTip": "API.SIGE\\Interfaces\\Repositories\\ISolicitacaoClienteRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T03:31:24.292Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "SolicitacaoCliente.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Models\\SolicitacaoCliente.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Models\\SolicitacaoCliente.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Models\\SolicitacaoCliente.cs",
+              "RelativeToolTip": "API.SIGE\\Models\\SolicitacaoCliente.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAwwCcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-27T03:10:36.794Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Obra.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Models\\Obra.cs",
+              "RelativeDocumentMoniker": "API.SIGE\\Models\\Obra.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Models\\Obra.cs",
+              "RelativeToolTip": "API.SIGE\\Models\\Obra.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAcwGIAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T16:16:46.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "AppDbData.cs",
-              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Data\\AppDbData.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Data\\AppDbData.cs",
               "RelativeDocumentMoniker": "API.SIGE\\Data\\AppDbData.cs",
-              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Data\\AppDbData.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Data\\AppDbData.cs",
               "RelativeToolTip": "API.SIGE\\Data\\AppDbData.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAswHoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T13:59:49.508Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 13,
               "Title": "CaixilhoApiController.cs",
-              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\CaixilhoApiController.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\CaixilhoApiController.cs",
               "RelativeDocumentMoniker": "API.SIGE\\Controllers\\CaixilhoApiController.cs",
-              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\CaixilhoApiController.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\CaixilhoApiController.cs",
               "RelativeToolTip": "API.SIGE\\Controllers\\CaixilhoApiController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAowE8AAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAwEsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-24T13:59:15.571Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 17,
               "Title": "UsuarioApiController.cs",
-              "DocumentMoniker": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\UsuarioApiController.cs",
+              "DocumentMoniker": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\UsuarioApiController.cs",
               "RelativeDocumentMoniker": "API.SIGE\\Controllers\\UsuarioApiController.cs",
-              "ToolTip": "C:\\Users\\TI\\source\\repos\\SouRyan\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\UsuarioApiController.cs",
+              "ToolTip": "C:\\Users\\GamerPc\\source\\repos\\Cliente\\API-SIGE\\API.SIGE\\API.SIGE\\Controllers\\UsuarioApiController.cs",
               "RelativeToolTip": "API.SIGE\\Controllers\\UsuarioApiController.cs",
               "ViewState": "AgIAAGEAAAAAAAAAAAAuwHcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-24T13:28:08.048Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-24T13:28:08.048Z"
             }
           ]
         }

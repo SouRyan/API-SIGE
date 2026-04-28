@@ -3,6 +3,7 @@ using System;
 using API.SIGE.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.SIGE.Migrations
 {
     [DbContext(typeof(AppDbData))]
-    partial class AppDbDataModelSnapshot : ModelSnapshot
+    [Migration("20260427031734_AddSolicitacaoClienteEClienteObra")]
+    partial class AddSolicitacaoClienteEClienteObra
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -438,42 +441,6 @@ namespace API.SIGE.Migrations
                     b.ToTable("ProducaoFamilia");
                 });
 
-            modelBuilder.Entity("API.SIGE.Model.SolicitacaoCliente", b =>
-                {
-                    b.Property<int>("IdSolicitacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdSolicitacao"));
-
-                    b.Property<DateTime>("DataNecessidadeEmObra")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("DataSolicitacao")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<int>("IdCaixilho")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("IdCliente")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ObservacaoCliente")
-                        .HasMaxLength(300)
-                        .HasColumnType("character varying(300)");
-
-                    b.Property<int>("Prioridade")
-                        .HasColumnType("integer");
-
-                    b.HasKey("IdSolicitacao");
-
-                    b.HasIndex("IdCaixilho");
-
-                    b.HasIndex("IdCliente");
-
-                    b.ToTable("SolicitacaoCliente");
-                });
-
             modelBuilder.Entity("API.SIGE.Model.TipoUsuario", b =>
                 {
                     b.Property<int>("IdTipoUsuario")
@@ -634,8 +601,7 @@ namespace API.SIGE.Migrations
                 {
                     b.HasOne("API.SIGE.Model.Usuario", "Cliente")
                         .WithMany()
-                        .HasForeignKey("IdCliente")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .HasForeignKey("IdCliente");
 
                     b.HasOne("API.SIGE.Model.Usuario", "Usuario")
                         .WithMany()
@@ -665,25 +631,6 @@ namespace API.SIGE.Migrations
                     b.Navigation("FamiliaCaixilho");
 
                     b.Navigation("Responsavel");
-                });
-
-            modelBuilder.Entity("API.SIGE.Model.SolicitacaoCliente", b =>
-                {
-                    b.HasOne("API.SIGE.Model.Caixilho", "Caixilho")
-                        .WithMany()
-                        .HasForeignKey("IdCaixilho")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.SIGE.Model.Usuario", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("IdCliente")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Caixilho");
-
-                    b.Navigation("Cliente");
                 });
 
             modelBuilder.Entity("API.SIGE.Model.Usuario", b =>

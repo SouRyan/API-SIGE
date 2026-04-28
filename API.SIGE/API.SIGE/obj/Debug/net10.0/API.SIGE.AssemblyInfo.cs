@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("API.SIGE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6c6d8fa57f48ba38cf96f49d6b853e14940764a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ad18dab8acd29223eb2f81eaeff5f224e68417c")]
 [assembly: System.Reflection.AssemblyProductAttribute("API.SIGE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("API.SIGE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -24,6 +24,7 @@ namespace API.SIGE.DTOs
         public string? ImagemObraPath { get; set; }
         public int IdUsuario { get; set; }
         public string? NomeUsuario { get; set; }
+        public int? IdCliente { get; set; }
 
         public StatusObra StatusObra { get; set; }
         public float PercentualMedicao { get; set; }

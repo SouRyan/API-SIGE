@@ -90,4 +90,16 @@ public class ObraApiController : ControllerBase
             return BadRequest(new { message = ex.Message });
         }
     }
+
+    [HttpGet("cliente")]
+    public async Task<ActionResult<List<ObraResponseDto>>> GetByCliente()
+    {
+        var claim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+        if (claim == null) return Unauthorized();
+
+        var clienteId = int.Parse(claim.Value);
+        var todas = await _obraService.GetAllAsync(null);
+        var minhas = todas.Where(o => o.IdCliente == clienteId).ToList();
+        return Ok(minhas);
+    }
 }
