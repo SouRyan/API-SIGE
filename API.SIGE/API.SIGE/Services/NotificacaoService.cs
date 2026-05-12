@@ -1,4 +1,5 @@
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
@@ -9,11 +10,16 @@ public class NotificacaoService : INotificacaoService
 {
     private readonly INotificacaoRepository _notificacaoRepository;
     private readonly IUsuarioRepository _usuarioRepository;
+    private readonly ITenantProvider _tenantProvider;
 
-    public NotificacaoService(INotificacaoRepository notificacaoRepository, IUsuarioRepository usuarioRepository)
+    public NotificacaoService(
+        INotificacaoRepository notificacaoRepository,
+        IUsuarioRepository usuarioRepository,
+        ITenantProvider tenantProvider)
     {
         _notificacaoRepository = notificacaoRepository;
         _usuarioRepository = usuarioRepository;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<List<NotificacaoResponseDto>> GetByUsuarioIdAsync(int idUsuario)
@@ -73,7 +79,8 @@ public class NotificacaoService : INotificacaoService
             TipoNotificacao = tipo,
             IdObra = idObra,
             Lida = false,
-            DataCriacao = DateTime.UtcNow
+            DataCriacao = DateTime.UtcNow,
+            IdEmpresa = _tenantProvider.GetTenantId()
         };
         await _notificacaoRepository.AddAsync(n);
     }

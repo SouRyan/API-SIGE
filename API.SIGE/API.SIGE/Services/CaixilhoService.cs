@@ -1,4 +1,5 @@
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
@@ -9,11 +10,16 @@ public class CaixilhoService : ICaixilhoService
 {
     private readonly ICaixilhoRepository _caixilhoRepository;
     private readonly IFamiliaCaixilhoRepository _familiaRepository;
+    private readonly ITenantProvider _tenantProvider;
 
-    public CaixilhoService(ICaixilhoRepository caixilhoRepository, IFamiliaCaixilhoRepository familiaRepository)
+    public CaixilhoService(
+        ICaixilhoRepository caixilhoRepository,
+        IFamiliaCaixilhoRepository familiaRepository,
+        ITenantProvider tenantProvider)
     {
         _caixilhoRepository = caixilhoRepository;
         _familiaRepository = familiaRepository;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<List<CaixilhoResponseDto>> GetAllAsync()
@@ -47,7 +53,8 @@ public class CaixilhoService : ICaixilhoService
             DescricaoCaixilho = dto.DescricaoCaixilho,
             StatusProducao = dto.StatusProducao,
             ObraId = dto.ObraId,
-            IdFamiliaCaixilho = dto.IdFamiliaCaixilho
+            IdFamiliaCaixilho = dto.IdFamiliaCaixilho,
+            IdEmpresa = _tenantProvider.GetTenantId()
         };
         await _caixilhoRepository.AddAsync(caixilho);
         var created = await _caixilhoRepository.GetById(caixilho.IdCaixilho);

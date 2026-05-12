@@ -36,5 +36,12 @@ namespace API.SIGE.Model
         [JsonIgnore]
         [ForeignKey(nameof(IdCargo))]
         public virtual Cargo? Cargo { get; set; }
+
+        [Required]
+        public int IdEmpresa { get; set; }
+
+        [JsonIgnore]
+        [ForeignKey(nameof(IdEmpresa))]
+        public virtual Empresa? Empresa { get; set; }
     }
 }

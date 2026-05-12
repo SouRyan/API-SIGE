@@ -2,6 +2,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
@@ -14,15 +15,18 @@ public class UsuarioService : IUsuarioService
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly ICargoRepository _cargoRepository;
     private readonly IConfiguration _configuration;
+    private readonly ITenantProvider _tenantProvider;
 
     public UsuarioService(
         IUsuarioRepository usuarioRepository,
         ICargoRepository cargoRepository,
-        IConfiguration configuration)
+        IConfiguration configuration,
+        ITenantProvider tenantProvider)
     {
         _usuarioRepository = usuarioRepository;
         _cargoRepository = cargoRepository;
         _configuration = configuration;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<List<UsuarioResponseDto>> GetAllAsync()
@@ -63,6 +67,10 @@ public class UsuarioService : IUsuarioService
                 ?? throw new InvalidOperationException($"Cargo {dto.IdCargo} não encontrado.");
         }
 
+        var tenantId = _tenantProvider.GetTenantId();
+        if (tenantId == 0)
+            throw new InvalidOperationException("Tenant não identificado. Faça login novamente.");
+
         var usuario = new Usuario
         {
             NomeUsuario = dto.NomeUsuario,
@@ -71,7 +79,8 @@ public class UsuarioService : IUsuarioService
             Telefone = dto.Telefone,
             Ativo = true,
             IdTipoUsuario = dto.IdTipoUsuario,
-            IdCargo = dto.IdCargo
+            IdCargo = dto.IdCargo,
+            IdEmpresa = tenantId
         };
         await _usuarioRepository.AddAsync(usuario);
 
@@ -110,6 +119,25 @@ public class UsuarioService : IUsuarioService
             };
         }
 
+        if (!usuario.Ativo)
+        {
+            return new LoginResponseDto
+            {
+                Success = false,
+                Message = "Usuário inativo. Entre em contato com o administrador."
+            };
+        }
+
+        var empresa = usuario.Empresa;
+        if (empresa != null && !empresa.Ativo)
+        {
+            return new LoginResponseDto
+            {
+                Success = false,
+                Message = "Empresa inativa. Entre em contato com o suporte."
+            };
+        }
+
         var token = GerarToken(usuario);
 
         return new LoginResponseDto
@@ -121,7 +149,9 @@ public class UsuarioService : IUsuarioService
             TipoUsuario = usuario.IdTipoUsuario,
             NomeTipoUsuario = usuario.TipoUsuario?.NomeTipoUsuario,
             Cargo = usuario.Cargo?.DescricaoCargo,
-            Token = token
+            Token = token,
+            IdEmpresa = usuario.IdEmpresa,
+            NomeEmpresa = empresa?.NomeEmpresa
         };
     }
 
@@ -136,7 +166,8 @@ public class UsuarioService : IUsuarioService
             new(ClaimTypes.NameIdentifier, usuario.IdUsuario.ToString()),
             new(ClaimTypes.Name, usuario.NomeUsuario),
             new(ClaimTypes.Email, usuario.Email),
-            new("tipoUsuario", usuario.IdTipoUsuario.ToString())
+            new("tipoUsuario", usuario.IdTipoUsuario.ToString()),
+            new("empresaId", usuario.IdEmpresa.ToString())
         };
 
         if (usuario.Cargo != null)

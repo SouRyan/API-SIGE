@@ -1,4 +1,5 @@
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
@@ -11,17 +12,20 @@ public class ObraService : IObraService
     private readonly IFamiliaCaixilhoRepository _familiaRepository;
     private readonly INotificacaoService _notificacaoService;
     private readonly IUsuarioRepository _usuarioRepository;
+    private readonly ITenantProvider _tenantProvider;
 
     public ObraService(
         IObraRepository obraRepository,
         IFamiliaCaixilhoRepository familiaRepository,
         INotificacaoService notificacaoService,
-        IUsuarioRepository usuarioRepository)
+        IUsuarioRepository usuarioRepository,
+        ITenantProvider tenantProvider)
     {
         _obraRepository = obraRepository;
         _familiaRepository = familiaRepository;
         _notificacaoService = notificacaoService;
         _usuarioRepository = usuarioRepository;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<List<ObraResponseDto>> GetAllAsync(bool? finalizadas)
@@ -43,6 +47,8 @@ public class ObraService : IObraService
 
     public async Task<ObraResponseDto> CreateAsync(ObraCreateDto dto)
     {
+        var tenantId = _tenantProvider.GetTenantId();
+
         var obra = new Obra
         {
             Nome = dto.Nome,
@@ -64,11 +70,11 @@ public class ObraService : IObraService
             StatusObra = StatusObra.Cadastrada,
             PercentualMedicao = 0,
             PercentualProducao = 0,
-            IdCliente = dto.IdCliente
+            IdCliente = dto.IdCliente,
+            IdEmpresa = tenantId
         };
         await _obraRepository.AddAsync(obra);
 
-        // Notificar medidores e produtores sobre nova obra
         var medidores = await _usuarioRepository.GetByCargoAsync(TipoCargo.ResponsavelMedicao);
         var produtores = await _usuarioRepository.GetByCargoAsync(TipoCargo.ResponsavelProducao);
         var destinatarios = medidores.Concat(produtores).DistinctBy(u => u.IdUsuario);
@@ -132,7 +138,6 @@ public class ObraService : IObraService
         obra.StatusObra = StatusObra.Verificada;
         await _obraRepository.UpdateAsync(obra);
 
-        // Notificar responsáveis pela medição que há famílias disponíveis
         var medidores = await _usuarioRepository.GetByCargoAsync(TipoCargo.ResponsavelMedicao);
         foreach (var u in medidores)
         {

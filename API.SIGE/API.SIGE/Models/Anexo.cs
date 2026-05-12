@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace API.SIGE.Model;
 
@@ -40,4 +41,11 @@ public class Anexo
 
     [ForeignKey(nameof(IdUsuario))]
     public virtual Usuario Usuario { get; set; } = null!;
+
+    [Required]
+    public int IdEmpresa { get; set; }
+
+    [JsonIgnore]
+    [ForeignKey(nameof(IdEmpresa))]
+    public virtual Empresa? Empresa { get; set; }
 }

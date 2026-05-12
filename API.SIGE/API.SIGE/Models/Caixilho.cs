@@ -46,7 +46,13 @@ namespace API.SIGE.Model
         public int IdFamiliaCaixilho { get; set; }
         [JsonIgnore]
         public virtual FamiliaCaixilho? FamiliaCaixilho { get; set; }
-        
+
+        [Required]
+        public int IdEmpresa { get; set; }
+
+        [JsonIgnore]
+        [ForeignKey(nameof(IdEmpresa))]
+        public virtual Empresa? Empresa { get; set; }
     }
 
     public enum StatusProducao

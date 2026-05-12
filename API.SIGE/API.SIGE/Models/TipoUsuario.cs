@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace API.SIGE.Model
 {
@@ -11,6 +12,13 @@ namespace API.SIGE.Model
         [Required(ErrorMessage = "Campo Obrigatório")]
         [StringLength(100)]
         public string NomeTipoUsuario { get; set; }
+
+        [Required]
+        public int IdEmpresa { get; set; }
+
+        [JsonIgnore]
+        [ForeignKey(nameof(IdEmpresa))]
+        public virtual Empresa? Empresa { get; set; }
 
         //[Key]
         //public TipoUsuarioEnum TipoUsuarioEnum { get; set; }

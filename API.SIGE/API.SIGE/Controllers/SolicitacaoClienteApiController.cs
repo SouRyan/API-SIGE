@@ -1,4 +1,4 @@
-﻿using API.SIGE.Interfaces;
+﻿using API.SIGE.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace API.SIGE.Model;
 
@@ -33,4 +34,11 @@ public class Notificacao
 
     [ForeignKey(nameof(IdObra))]
     public virtual Obra? Obra { get; set; }
+
+    [Required]
+    public int IdEmpresa { get; set; }
+
+    [JsonIgnore]
+    [ForeignKey(nameof(IdEmpresa))]
+    public virtual Empresa? Empresa { get; set; }
 }

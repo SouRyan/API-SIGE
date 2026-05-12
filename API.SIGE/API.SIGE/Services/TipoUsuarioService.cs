@@ -1,4 +1,5 @@
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
@@ -8,10 +9,12 @@ namespace API.SIGE.Services;
 public class TipoUsuarioService : ITipoUsuarioService
 {
     private readonly ITipoUsuarioRepository _tipoUsuarioRepository;
+    private readonly ITenantProvider _tenantProvider;
 
-    public TipoUsuarioService(ITipoUsuarioRepository tipoUsuarioRepository)
+    public TipoUsuarioService(ITipoUsuarioRepository tipoUsuarioRepository, ITenantProvider tenantProvider)
     {
         _tipoUsuarioRepository = tipoUsuarioRepository;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<List<TipoUsuarioResponseDto>> GetAllAsync()
@@ -28,7 +31,11 @@ public class TipoUsuarioService : ITipoUsuarioService
 
     public async Task<TipoUsuarioResponseDto> CreateAsync(TipoUsuarioCreateDto dto)
     {
-        var entity = new TipoUsuario { NomeTipoUsuario = dto.NomeTipoUsuario };
+        var entity = new TipoUsuario
+        {
+            NomeTipoUsuario = dto.NomeTipoUsuario,
+            IdEmpresa = _tenantProvider.GetTenantId()
+        };
         await _tipoUsuarioRepository.AddAsync(entity);
         var created = await _tipoUsuarioRepository.GetById(entity.IdTipoUsuario);
         return Map(created!);

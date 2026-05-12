@@ -1,4 +1,5 @@
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
@@ -8,10 +9,12 @@ namespace API.SIGE.Services;
 public class CargoService : ICargoService
 {
     private readonly ICargoRepository _cargoRepository;
+    private readonly ITenantProvider _tenantProvider;
 
-    public CargoService(ICargoRepository cargoRepository)
+    public CargoService(ICargoRepository cargoRepository, ITenantProvider tenantProvider)
     {
         _cargoRepository = cargoRepository;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<List<CargoResponseDto>> GetAllAsync()
@@ -31,7 +34,8 @@ public class CargoService : ICargoService
         var entity = new Cargo
         {
             TipoCargo = dto.TipoCargo,
-            DescricaoCargo = dto.DescricaoCargo
+            DescricaoCargo = dto.DescricaoCargo,
+            IdEmpresa = _tenantProvider.GetTenantId()
         };
         await _cargoRepository.AddAsync(entity);
         return Map(entity);

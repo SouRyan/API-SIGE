@@ -29,6 +29,13 @@ namespace API.SIGE.Model
         public PrioridadeCliente Prioridade { get; set; } = PrioridadeCliente.Normal;
 
         public DateTime DataSolicitacao { get; set; } = DateTime.UtcNow;
+
+        [Required]
+        public int IdEmpresa { get; set; }
+
+        [JsonIgnore]
+        [ForeignKey(nameof(IdEmpresa))]
+        public virtual Empresa? Empresa { get; set; }
     }
 
     public enum PrioridadeCliente

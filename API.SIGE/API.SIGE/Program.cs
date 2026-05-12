@@ -13,7 +13,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Render / reverse proxy: HTTPS e IP reais vêm em X-Forwarded-*
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
@@ -31,6 +30,11 @@ builder.Services.AddCors(options =>
 
 var connectionString = builder.Configuration.GetConnectionString("WebApiDatabase");
 
+// --- Multi-tenant ---
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ITenantProvider, TenantProvider>();
+
+// --- Repositories ---
 builder.Services.AddScoped<ITipoUsuarioRepository, TipoUsuarioRepository>();
 builder.Services.AddScoped<ICaixilhoRepository, CaixilhoRepository>();
 builder.Services.AddScoped<IFamiliaCaixilhoRepository, FamiliaCaixilhoRepository>();
@@ -42,10 +46,13 @@ builder.Services.AddScoped<IProducaoFamiliaRepository, ProducaoFamiliaRepository
 builder.Services.AddScoped<IAnexoRepository, AnexoRepository>();
 builder.Services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
 builder.Services.AddScoped<ISolicitacaoClienteRepository, SolicitacaoClienteRepository>();
+builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
+builder.Services.AddScoped<ISolicitacaoCadastroRepository, SolicitacaoCadastroRepository>();
 
 builder.Services.AddDbContext<AppDbData>(options =>
     options.UseNpgsql(connectionString));
 
+// --- Services ---
 builder.Services.AddScoped<INotificacaoService, NotificacaoService>();
 builder.Services.AddScoped<ICargoService, CargoService>();
 builder.Services.AddScoped<IMedicaoService, MedicaoService>();
@@ -58,6 +65,9 @@ builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddScoped<ICaixilhoService, CaixilhoService>();
 builder.Services.AddScoped<ITipoUsuarioService, TipoUsuarioService>();
 builder.Services.AddScoped<ISolicitacaoClienteService, SolicitacaoClienteService>();
+builder.Services.AddScoped<IEmpresaService, EmpresaService>();
+builder.Services.AddScoped<ISolicitacaoCadastroService, SolicitacaoCadastroService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

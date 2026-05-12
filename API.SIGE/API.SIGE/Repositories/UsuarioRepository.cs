@@ -91,7 +91,9 @@ public class UsuarioRepository : IUsuarioRepository
 
     public async Task<Usuario?> ValidarLoginAsync(string email, string senha) =>
         await _context.Usuarios
+            .IgnoreQueryFilters()
             .Include(u => u.TipoUsuario)
             .Include(u => u.Cargo)
-            .FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha);
+            .Include(u => u.Empresa)
+            .FirstOrDefaultAsync(u => u.Email == email && u.Senha == senha && u.Ativo);
 }

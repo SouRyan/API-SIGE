@@ -1,8 +1,8 @@
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
-using Microsoft.AspNetCore.Hosting;
 
 namespace API.SIGE.Services;
 
@@ -11,15 +11,18 @@ public class AnexoService : IAnexoService
     private readonly IAnexoRepository _anexoRepository;
     private readonly IConfiguration _configuration;
     private readonly IWebHostEnvironment _environment;
+    private readonly ITenantProvider _tenantProvider;
 
     public AnexoService(
         IAnexoRepository anexoRepository,
         IConfiguration configuration,
-        IWebHostEnvironment environment)
+        IWebHostEnvironment environment,
+        ITenantProvider tenantProvider)
     {
         _anexoRepository = anexoRepository;
         _configuration = configuration;
         _environment = environment;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<AnexoResponseDto> UploadAsync(AnexoUploadDto dto)
@@ -61,7 +64,8 @@ public class AnexoService : IAnexoService
             TipoAnexo = dto.TipoAnexo,
             IdMedicao = dto.IdMedicao,
             IdProducaoFamilia = dto.IdProducaoFamilia,
-            IdUsuario = dto.IdUsuario
+            IdUsuario = dto.IdUsuario,
+            IdEmpresa = _tenantProvider.GetTenantId()
         };
         await _anexoRepository.AddAsync(anexo);
 

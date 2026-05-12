@@ -97,5 +97,12 @@ namespace API.SIGE.Model
         public int? IdCliente { get; set; }
         [JsonIgnore]
         public virtual Usuario? Cliente { get; set; }
+
+        [Required]
+        public int IdEmpresa { get; set; }
+
+        [JsonIgnore]
+        [ForeignKey(nameof(IdEmpresa))]
+        public virtual Empresa? Empresa { get; set; }
     }
 }

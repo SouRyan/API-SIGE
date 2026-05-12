@@ -28,6 +28,11 @@ namespace API.SIGE.Model
         [NotMapped]
         public string PesoTotalFormatado => $"{PesoTotal:F2} kg";
 
+        [Required]
+        public int IdEmpresa { get; set; }
 
+        [JsonIgnore]
+        [ForeignKey(nameof(IdEmpresa))]
+        public virtual Empresa? Empresa { get; set; }
     }
 }

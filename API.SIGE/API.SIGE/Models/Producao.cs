@@ -13,6 +13,12 @@ namespace API.SIGE.Model
 
         [Required]
         public String NomeProducao { get; set; }
-        
+
+        [Required]
+        public int IdEmpresa { get; set; }
+
+        [JsonIgnore]
+        [ForeignKey(nameof(IdEmpresa))]
+        public virtual Empresa? Empresa { get; set; }
     }
 }

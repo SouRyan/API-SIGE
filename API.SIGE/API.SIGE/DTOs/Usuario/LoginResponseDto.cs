@@ -14,5 +14,8 @@ namespace API.SIGE.DTOs
         public string? Cargo { get; set; }
 
         public string? Token { get; set; }
+
+        public int? IdEmpresa { get; set; }
+        public string? NomeEmpresa { get; set; }
     }
 }

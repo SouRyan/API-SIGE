@@ -1,4 +1,5 @@
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
@@ -13,6 +14,7 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
     private readonly IObraService _obraService;
     private readonly INotificacaoService _notificacaoService;
     private readonly IUsuarioRepository _usuarioRepository;
+    private readonly ITenantProvider _tenantProvider;
 
     public ProducaoFamiliaService(
         IProducaoFamiliaRepository producaoRepository,
@@ -20,7 +22,8 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
         IObraRepository obraRepository,
         IObraService obraService,
         INotificacaoService notificacaoService,
-        IUsuarioRepository usuarioRepository)
+        IUsuarioRepository usuarioRepository,
+        ITenantProvider tenantProvider)
     {
         _producaoRepository = producaoRepository;
         _familiaRepository = familiaRepository;
@@ -28,6 +31,7 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
         _obraService = obraService;
         _notificacaoService = notificacaoService;
         _usuarioRepository = usuarioRepository;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<ProducaoFamiliaResponseDto?> GetByFamiliaIdAsync(int familiaId)
@@ -61,7 +65,8 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
             Status = StatusAtividade.EmAndamento,
             DataInicio = DateTime.UtcNow,
             DataEstimadaConclusao = dto.DataEstimadaConclusao,
-            Descricao = dto.Descricao
+            Descricao = dto.Descricao,
+            IdEmpresa = _tenantProvider.GetTenantId()
         };
         await _producaoRepository.AddAsync(producao);
 
@@ -75,7 +80,6 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
             await _obraRepository.UpdateAsync(obra);
         }
 
-        // Notificar gerentes sobre início de produção
         var gerentes = await _usuarioRepository.GetByCargoAsync(TipoCargo.Gerente);
         foreach (var g in gerentes)
         {
@@ -130,7 +134,6 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
 
         await _obraService.RecalcularProgressoAsync(familia.IdObra);
 
-        // Notificar gerentes sobre família finalizada
         var obra = await _obraRepository.GetById(familia.IdObra);
         var gerentes = await _usuarioRepository.GetByCargoAsync(TipoCargo.Gerente);
         foreach (var g in gerentes)
@@ -143,7 +146,6 @@ public class ProducaoFamiliaService : IProducaoFamiliaService
                 familia.IdObra);
         }
 
-        // Se atingiu 100%, notificação extra
         if (obra != null && obra.PercentualMedicao >= 99.99f && obra.PercentualProducao >= 99.99f)
         {
             foreach (var g in gerentes)

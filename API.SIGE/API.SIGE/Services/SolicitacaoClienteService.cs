@@ -9,10 +9,12 @@ namespace API.SIGE.Services;
 public class SolicitacaoClienteService : ISolicitacaoClienteService
 {
     private readonly ISolicitacaoClienteRepository _repository;
+    private readonly ITenantProvider _tenantProvider;
 
-    public SolicitacaoClienteService(ISolicitacaoClienteRepository repository)
+    public SolicitacaoClienteService(ISolicitacaoClienteRepository repository, ITenantProvider tenantProvider)
     {
         _repository = repository;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<List<SolicitacaoClienteResponseDto>> GetByClienteIdAsync(int clienteId)
@@ -29,7 +31,6 @@ public class SolicitacaoClienteService : ISolicitacaoClienteService
 
     public async Task<SolicitacaoClienteResponseDto> CreateAsync(int clienteId, SolicitacaoClienteCreateDto dto)
     {
-        // Verifica se já existe solicitação desse cliente pra esse caixilho
         var existente = await _repository.GetByCaixilhoEClienteAsync(dto.IdCaixilho, clienteId);
         if (existente != null)
             throw new InvalidOperationException("Já existe uma solicitação para este caixilho.");
@@ -41,7 +42,8 @@ public class SolicitacaoClienteService : ISolicitacaoClienteService
             DataNecessidadeEmObra = dto.DataNecessidadeEmObra.ToUniversalTime(),
             ObservacaoCliente = dto.ObservacaoCliente,
             Prioridade = (PrioridadeCliente)dto.Prioridade,
-            DataSolicitacao = DateTime.UtcNow
+            DataSolicitacao = DateTime.UtcNow,
+            IdEmpresa = _tenantProvider.GetTenantId()
         };
 
         await _repository.AddAsync(solicitacao);
@@ -58,7 +60,7 @@ public class SolicitacaoClienteService : ISolicitacaoClienteService
         if (solicitacao.IdCliente != clienteId)
             throw new InvalidOperationException("Sem permissão para editar esta solicitação.");
 
-        solicitacao.DataNecessidadeEmObra = dto.DataNecessidadeEmObra.ToUniversalTime(); ;
+        solicitacao.DataNecessidadeEmObra = dto.DataNecessidadeEmObra.ToUniversalTime();
         solicitacao.ObservacaoCliente = dto.ObservacaoCliente;
         solicitacao.Prioridade = (PrioridadeCliente)dto.Prioridade;
 

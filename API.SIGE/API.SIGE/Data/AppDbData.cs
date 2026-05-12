@@ -1,3 +1,4 @@
+using API.SIGE.Interfaces;
 using API.SIGE.Model;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,9 +6,12 @@ namespace API.SIGE.Data;
 
 public class AppDbData : DbContext
 {
-    public AppDbData(DbContextOptions<AppDbData> options)
+    private readonly ITenantProvider? _tenantProvider;
+
+    public AppDbData(DbContextOptions<AppDbData> options, ITenantProvider? tenantProvider = null)
         : base(options)
     {
+        _tenantProvider = tenantProvider;
     }
 
     public DbSet<Caixilho> Caixilhos => Set<Caixilho>();
@@ -21,9 +25,25 @@ public class AppDbData : DbContext
     public DbSet<Anexo> Anexos => Set<Anexo>();
     public DbSet<Notificacao> Notificacoes => Set<Notificacao>();
     public DbSet<SolicitacaoCliente> SolicitacoesCliente => Set<SolicitacaoCliente>();
+    public DbSet<Empresa> Empresas => Set<Empresa>();
+    public DbSet<SolicitacaoCadastro> SolicitacoesCadastro => Set<SolicitacaoCadastro>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // --- Multi-tenant: Global Query Filters ---
+        modelBuilder.Entity<Usuario>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<Obra>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<Caixilho>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<FamiliaCaixilho>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<Cargo>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<Medicao>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<ProducaoFamilia>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<Anexo>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<Notificacao>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<SolicitacaoCliente>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+        modelBuilder.Entity<TipoUsuario>().HasQueryFilter(e => _tenantProvider == null || !_tenantProvider.HasTenant() || e.IdEmpresa == _tenantProvider.GetTenantId());
+
+        // --- Relationships ---
         modelBuilder.Entity<Usuario>(entity =>
         {
             entity.HasOne(u => u.TipoUsuario)
@@ -35,6 +55,11 @@ public class AppDbData : DbContext
                 .WithMany(c => c.Usuarios)
                 .HasForeignKey(u => u.IdCargo)
                 .OnDelete(DeleteBehavior.SetNull);
+
+            entity.HasOne(u => u.Empresa)
+                .WithMany()
+                .HasForeignKey(u => u.IdEmpresa)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<Obra>(entity =>
@@ -43,6 +68,16 @@ public class AppDbData : DbContext
                 .WithMany()
                 .HasForeignKey(o => o.IdUsuario)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(o => o.Cliente)
+                .WithMany()
+                .HasForeignKey(o => o.IdCliente)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            entity.HasOne(o => o.Empresa)
+                .WithMany()
+                .HasForeignKey(o => o.IdEmpresa)
+                .OnDelete(DeleteBehavior.Restrict);
         });
 
         modelBuilder.Entity<FamiliaCaixilho>(entity =>
@@ -55,13 +90,7 @@ public class AppDbData : DbContext
 
         modelBuilder.Entity<Cargo>(entity =>
         {
-            entity.HasIndex(c => c.TipoCargo).IsUnique();
-
-            entity.HasData(
-                new Cargo { IdCargo = 1, TipoCargo = TipoCargo.Gerente, DescricaoCargo = "Gerente" },
-                new Cargo { IdCargo = 2, TipoCargo = TipoCargo.ResponsavelVerificacao, DescricaoCargo = "Responsável pela verificação" },
-                new Cargo { IdCargo = 3, TipoCargo = TipoCargo.ResponsavelMedicao, DescricaoCargo = "Responsável pela medição" },
-                new Cargo { IdCargo = 4, TipoCargo = TipoCargo.ResponsavelProducao, DescricaoCargo = "Responsável pela produção" });
+            entity.HasIndex(c => new { c.TipoCargo, c.IdEmpresa }).IsUnique();
         });
 
         modelBuilder.Entity<Medicao>(entity =>
@@ -132,14 +161,6 @@ public class AppDbData : DbContext
                 .WithMany()
                 .HasForeignKey(s => s.IdCliente)
                 .OnDelete(DeleteBehavior.Restrict);
-        });
-
-        modelBuilder.Entity<Obra>(entity =>
-        {
-            entity.HasOne(o => o.Cliente)
-                .WithMany()
-                .HasForeignKey(o => o.IdCliente)
-                .OnDelete(DeleteBehavior.SetNull);
         });
     }
 }

@@ -1,6 +1,6 @@
-﻿using API.SIGE.DTOs;
+using API.SIGE.DTOs;
 
-namespace API.SIGE.Interfaces;
+namespace API.SIGE.Interfaces.Services;
 
 public interface ISolicitacaoClienteService
 {

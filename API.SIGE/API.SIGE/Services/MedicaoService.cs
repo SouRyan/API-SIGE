@@ -1,4 +1,5 @@
 using API.SIGE.DTOs;
+using API.SIGE.Interfaces;
 using API.SIGE.Interfaces.Repositories;
 using API.SIGE.Interfaces.Services;
 using API.SIGE.Model;
@@ -11,17 +12,20 @@ public class MedicaoService : IMedicaoService
     private readonly IFamiliaCaixilhoRepository _familiaRepository;
     private readonly IObraRepository _obraRepository;
     private readonly IObraService _obraService;
+    private readonly ITenantProvider _tenantProvider;
 
     public MedicaoService(
         IMedicaoRepository medicaoRepository,
         IFamiliaCaixilhoRepository familiaRepository,
         IObraRepository obraRepository,
-        IObraService obraService)
+        IObraService obraService,
+        ITenantProvider tenantProvider)
     {
         _medicaoRepository = medicaoRepository;
         _familiaRepository = familiaRepository;
         _obraRepository = obraRepository;
         _obraService = obraService;
+        _tenantProvider = tenantProvider;
     }
 
     public async Task<MedicaoResponseDto?> GetByFamiliaIdAsync(int familiaId)
@@ -55,7 +59,8 @@ public class MedicaoService : IMedicaoService
             Status = StatusAtividade.EmAndamento,
             DataInicio = DateTime.UtcNow,
             DataEstimadaConclusao = dto.DataEstimadaConclusao,
-            Descricao = dto.Descricao
+            Descricao = dto.Descricao,
+            IdEmpresa = _tenantProvider.GetTenantId()
         };
         await _medicaoRepository.AddAsync(medicao);
 
@@ -112,8 +117,8 @@ public class MedicaoService : IMedicaoService
 
         await _obraService.RecalcularProgressoAsync(familia.IdObra);
 
-        var final = await _medicaoRepository.GetByIdAsync(medicao.IdMedicao);
-        return Map(final!);
+        var final_ = await _medicaoRepository.GetByIdAsync(medicao.IdMedicao);
+        return Map(final_!);
     }
 
     private static MedicaoResponseDto Map(Medicao m) => new()
